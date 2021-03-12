@@ -1,0 +1,27 @@
+.overview {
+  max-width: 75vw;
+  display:flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+}
+
+.article {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.image {
+  background-color: darkgrey;
+  width: 200px;
+  height: 200px;
+  grid-column: 1;
+}
+
+.content {
+  grid-column: span 3;
+}
+
+.category {
+  color:#c7c7c7;
+}
