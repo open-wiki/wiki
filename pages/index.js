@@ -1,12 +1,18 @@
 import Head from 'next/head'
-import Overview from '../components/Overview'
-import Styles from '../styles/index.module.css'
+import Index from '../components/article-overview'
 
 export default function Home() {
   return (
-    <div className={Styles.container}>
-        <Overview>
-        </Overview>
+    <div>
+        <h1>Overzicht</h1>
+        <Index>
+        </Index>
+        <Index>
+        </Index>
+        <Index>
+        </Index>
+        <Index>
+        </Index>
     </div>
   )
 }
