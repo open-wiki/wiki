@@ -1,6 +1,6 @@
 .overview {
   max-width: 75vw;
-  display:flex;
+  display: flex;
   flex-direction: column;
   justify-content: left;
   align-items: center;
@@ -8,14 +8,14 @@
 
 .article {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .image {
   background-color: darkgrey;
   width: 200px;
   height: 200px;
-  grid-column: 1;
+  grid-column: 2;
 }
 
 .content {
@@ -23,5 +23,5 @@
 }
 
 .category {
-  color:#c7c7c7;
+  color: #c7c7c7;
 }
