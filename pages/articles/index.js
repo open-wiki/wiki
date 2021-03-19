@@ -1,12 +1,12 @@
-import Index from '../../components/article-overview/index'
+import Overview from '../../components/article-overview/index'
 
 export default function Home() {
   return (
     <div>
-      <Index></Index>
-      <Index></Index>
-      <Index></Index>
-      <Index></Index>
+      <Overview></Overview>
+      <Overview></Overview>
+      <Overview></Overview>
+      <Overview></Overview>
     </div>
   )
 }

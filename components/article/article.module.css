@@ -1,0 +1,32 @@
+/*Dit is de css voor de markdown language*/
+
+.markdown strong {
+  font-weight: inherit;
+  font-weight: bolder;
+}
+
+.markdown em {
+  font-style: italic;
+}
+
+.markdown code,
+.markdown kbd,
+.markdown pre {
+  font-family: 'courier new', monospace;
+}
+
+.markdown ul {
+  list-style-type: circle;
+}
+
+.markdown ol {
+  list-style-type: decimal;
+}
+
+.markdown blockquote {
+  color: #666666;
+  margin: 0;
+  border-left: 6px solid #999;
+  padding-right: 1em;
+  page-break-inside: avoid;
+}

@@ -1,21 +1,14 @@
-.overview {
-  max-width: 75vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: left;
-  align-items: center;
-}
-
 .article {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  margin-bottom: 2vh;
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .image {
   background-color: darkgrey;
   width: 200px;
   height: 200px;
-  grid-column: 2;
+  grid-column: 1;
 }
 
 .content {
