@@ -13,6 +13,24 @@
 .markdown kbd,
 .markdown pre {
   font-family: 'courier new', monospace;
+  background-color: #f0f0f0;
+}
+
+.markdown code {
+  padding: 0.2em 0.4em;
+  margin: 0;
+  font-size: 85%;
+}
+
+.markdown pre code {
+  display: inline;
+  padding: 0;
+  margin: 0;
+  overflow: visible;
+  line-height: inherit;
+  word-wrap: normal;
+  background-color: initial;
+  border: 0;
 }
 
 .markdown ul {
@@ -26,7 +44,11 @@
 .markdown blockquote {
   color: #666666;
   margin: 0;
-  border-left: 6px solid #999;
+  border-left: 6px solid;
   padding-right: 1em;
   page-break-inside: avoid;
+}
+
+.markdown sup {
+  color: red;
 }
