@@ -1,4 +1,4 @@
-import Markdown from '../../components/article/Index'
+import Markdown from '../../components/article/Article'
 
 const Article = () => {
   return (
