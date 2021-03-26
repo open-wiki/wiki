@@ -1,7 +1,9 @@
+import Markdown from '../../components/article/Article'
+
 const Article = () => {
   return (
     <div>
-      <h1>Artikel pagina</h1>
+      <Markdown></Markdown>
     </div>
   )
 }

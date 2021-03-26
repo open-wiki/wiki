@@ -1,9 +1,10 @@
+import Link from 'next/link'
 import Styles from './Overview.module.css'
 
 const Index = () => {
   return (
     <container>
-      <article className={Styles.overview}>
+      <Link href="/articles/test">
         <article className={Styles.article}>
           <div className={Styles.image}></div>
           <div className={Styles.content}>
@@ -15,9 +16,23 @@ const Index = () => {
             </p>
           </div>
         </article>
-      </article>
+      </Link>
     </container>
   )
 }
 
 export default Index
+/*    <container>
+      {articles.map(article => (
+          <article className={Styles.article} key={article.id}>
+            <div className={Styles.image}></div>
+            <div className={Styles.content}>
+              <p className={Styles.category}>Product Owner</p>
+              <h2>{ article.title }</h2>
+              <p>
+                { article.body }
+              </p>
+            </div>
+          </article>
+      ))}
+    </container>*/
