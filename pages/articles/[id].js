@@ -8,6 +8,7 @@ const Article = ({ props, query }) => {
       <h1>{props.data.Title}</h1>
       <h1>{query.id}</h1>
       <h1>{props.data.Paragraph}</h1>
+
     </div>
   )
 }
