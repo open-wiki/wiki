@@ -21,6 +21,7 @@ yarn.lock
 .DS_Store
 *.pem
 .idea
+.eslintcache
 
 # debug
 npm-debug.log*

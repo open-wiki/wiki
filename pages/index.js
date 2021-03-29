@@ -1,6 +1,7 @@
 import Searchbar from '../components/searchbar/Searchbar'
 import Styles from './index.module.css'
 import IconButton from '../components/icon-button'
+import ArticleCard from '../components/article-card'
 
 export default function Home() {
   return (
@@ -8,8 +9,9 @@ export default function Home() {
       <div className={Styles.search}>
         <h1>Open Wiki</h1>
         <Searchbar />
-        <IconButton content={'Nieuw artikel'} />
+        <IconButton icon={'add_circle'} content={'Nieuw artikel'} />
       </div>
+      <ArticleCard />
     </div>
   )
 }

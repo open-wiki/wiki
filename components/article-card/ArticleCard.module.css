@@ -1,0 +1,48 @@
+.ArticleCard {
+    width: 100%;
+    height: 100%;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+    padding: 0px;
+    overflow: hidden;
+    display: grid;
+    grid-template-columns: 250px 1fr;
+}
+.ArticleCard h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+.Thumbnail {
+    grid-column: 1;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover !important;
+}
+.Content {
+    grid-column: 2;
+    display: grid;
+    padding: 22px;
+}
+.Content p {
+    overflow: hidden;
+    margin: 10px 0;
+    line-height: 1.2em;
+    max-height: 3.6em;
+}
+.Meta {
+    font-size: 14px;
+    color: #666666;
+    display: grid;
+    grid-template-columns: 150px 1fr;
+    line-height: 2em;
+}
+.Date {
+    grid-column: 1;
+}
+.Score {
+    grid-column: 2;
+    display: grid;
+    grid-template-columns: 2rem 2rem;
+}
