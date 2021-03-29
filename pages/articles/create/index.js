@@ -1,7 +1,7 @@
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import Create_Article from '../../api/create'
 import * as React from 'react'
-import Styles from '../../../build/server/pages/articles/create'
+import Styles from './create.module.css'
 
 export default function Index() {
   const [value, setValue] = React.useState('**Hello world!!!**')
