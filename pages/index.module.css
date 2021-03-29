@@ -2,7 +2,6 @@
   display: grid;
   grid-template-columns: auto;
   grid-template-rows: 50vh 1fr;
-  justify-content: center;
   width: 100%;
 }
 .search {
