@@ -12,14 +12,13 @@ const converter = new Showdown.Converter({
   tasklists: true,
 })
 
-function NormEdit() {
-  const [value, setValue] = React.useState('**Hello world!!!**')
+function NormEdit({ sendDataToParent, value }) {
   const [selectedTab, setSelectedTab] = React.useState('write')
   return (
     <div className="container">
       <ReactMde
         value={value}
-        onChange={setValue}
+        onChange={sendDataToParent}
         selectedTab={selectedTab}
         onTabChange={setSelectedTab}
         generateMarkdownPreview={(markdown) =>

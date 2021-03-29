@@ -8,11 +8,11 @@ const Article = ({ props, query }) => {
       <h1>{props.data.Title}</h1>
       <h1>{query.id}</h1>
       <h1>{props.data.Paragraph}</h1>
-
     </div>
   )
 }
 
+//standaart next.js functie om data op te halen
 Article.getInitialProps = async (ctx) => {
   const query = ctx.query
   const res = await fetch(`http://localhost:1337/Articles/${query.id}`)
