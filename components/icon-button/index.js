@@ -1,11 +1,14 @@
 import Styles from './IconButton.module.css'
+import Link from 'next/link'
 
-const IconButton = ({ icon, content }) => {
+const IconButton = ({ icon, content, href }) => {
   return (
-    <button className={Styles.Button}>
-      <i className="material-icons md-24">{icon}</i>
-      <span className={Styles.Content}>{content}</span>
-    </button>
+    <Link href={href}>
+      <button className={Styles.Button}>
+        <i className="material-icons md-24">{icon}</i>
+        <span className={Styles.Content}>{content}</span>
+      </button>
+    </Link>
   )
 }
 
