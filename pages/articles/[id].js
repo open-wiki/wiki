@@ -1,13 +1,15 @@
+import Styles from './[id].module.css'
+
 const Article = ({ props, query }) => {
   console.log(query)
   console.log(props.data.Title)
   console.log(props.data.Paragraph)
 
   return (
-    <div>
+    <div className={Styles.article}>
       <h1>{props.data.Title}</h1>
       <h1>{query.id}</h1>
-      <h1>{props.data.Paragraph}</h1>
+      <p>{props.data.Paragraph}</p>
     </div>
   )
 }

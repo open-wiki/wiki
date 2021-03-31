@@ -3,6 +3,7 @@ import ReactMde from 'react-mde'
 import * as Showdown from 'showdown'
 import 'react-mde/lib/styles/css/react-mde-editor.css'
 import 'react-mde/lib/styles/css/react-mde-toolbar.css'
+import 'react-mde/lib/styles/css/react-mde-preview.css'
 import 'react-mde/lib/styles/css/react-mde.css'
 
 const converter = new Showdown.Converter({

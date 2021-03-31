@@ -17,13 +17,15 @@ export default function Index() {
     console.log(title, value)
   }
   return (
-    <div>
+    <div className={Styles.createArticle}>
+      <h2>Titel:</h2>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type="text"
           name="title"
           onChange={(event) => setTitle(event.target.value)}
         />
+        <h2>Content: </h2>
         <NormEdit sendDataToParent={sendDataToParent} value={value} />
         <input type="submit" value="Submit" className={Styles.button} />
       </form>

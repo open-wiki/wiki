@@ -4,7 +4,7 @@ import Styles from './Overview.module.css'
 const Index = () => {
   return (
     <container>
-      <Link href="/articles/test">
+      <Link href="/test">
         <article className={Styles.article}>
           <div className={Styles.image}></div>
           <div className={Styles.content}>

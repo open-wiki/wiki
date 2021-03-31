@@ -1,6 +1,6 @@
 import Styles from './ArticleCard.module.css'
 
-const IconButton = () => {
+const ArticleCard = () => {
   return (
     <div className={Styles.ArticleCard}>
       <a href="#">
@@ -35,4 +35,4 @@ const IconButton = () => {
   )
 }
 
-export default IconButton
+export default ArticleCard

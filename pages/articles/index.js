@@ -1,12 +1,12 @@
-import Overview from '../../components/article-overview/index'
+import ArticleCard from '../../components/article-card/index'
 
 export default function Home() {
   return (
     <div>
-      <Overview></Overview>
-      <Overview></Overview>
-      <Overview></Overview>
-      <Overview></Overview>
+      <ArticleCard></ArticleCard>
+      <ArticleCard></ArticleCard>
+      <ArticleCard></ArticleCard>
+      <ArticleCard></ArticleCard>
     </div>
   )
 }
