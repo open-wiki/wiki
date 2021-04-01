@@ -1,13 +1,15 @@
+import Styles from './[id].module.css'
+import Markdown from '../../components/markdown/Markdown'
+
 const Article = ({ props, query }) => {
   console.log(query)
   console.log(props.data.Title)
   console.log(props.data.Paragraph)
 
   return (
-    <div>
-      <h1>{props.data.Title}</h1>
-      <h1>{query.id}</h1>
-      <h1>{props.data.Paragraph}</h1>
+    <div className={Styles.article}>
+      <h1 className={Styles.articleTitle}>{props.data.Title}</h1>
+      <Markdown content={props.data.Paragraph} />
     </div>
   )
 }
@@ -15,7 +17,7 @@ const Article = ({ props, query }) => {
 //standaart next.js functie om data op te halen
 Article.getInitialProps = async (ctx) => {
   const query = ctx.query
-  const res = await fetch(`http://localhost:1337/Articles/${query.id}`)
+  const res = await fetch(`http://localhost:5000/Articles/${query.id}`)
   const data = await res.json()
 
   if (!data) {

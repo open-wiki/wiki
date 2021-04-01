@@ -1,5 +1,5 @@
 import styles from './Layout.module.css'
-import Navbar from './navbar/Navbar'
+import Topbar from './topbar/Topbar'
 import Head from 'next/head'
 
 const Layout = ({ children }) => {
@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div className="content">
-        <Navbar />
+        <Topbar />
         <div className={styles.container}>{children}</div>
       </div>
     </>

@@ -6,27 +6,44 @@ import Styles from './create.module.css'
 export default function Index() {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
+  const [newArticle, setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
     // the callback. Use a better name
     console.log(index)
     setValue(index)
   }
-  const handleSubmit = (event) => {
-    Create_Article(title, value)
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(title, value)
+    const newArticleData = await Create_Article(title, value)
+    setNewArticle(newArticleData)
   }
   return (
-    <div>
+    <div className={Styles.createArticle}>
+      <h2>Titel:</h2>
       <form onSubmit={(event) => handleSubmit(event)}>
         <input
           type="text"
           name="title"
           onChange={(event) => setTitle(event.target.value)}
         />
+        <h2>Content: </h2>
         <NormEdit sendDataToParent={sendDataToParent} value={value} />
         <input type="submit" value="Submit" className={Styles.button} />
       </form>
+      <div
+        style={{
+          background: 'antiquewhite',
+          height: '50px',
+          padding: '10px',
+          borderRadius: '10px',
+        }}
+      >
+        {newArticle ? (
+          <p>created article with title: {newArticle.Title}</p>
+        ) : (
+          'create an article above'
+        )}
+      </div>
     </div>
   )
 }
