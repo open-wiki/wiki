@@ -1,11 +1,7 @@
 import Styles from './[id].module.css'
 import Markdown from '../../components/markdown/Markdown'
 
-const Article = ({ props, query }) => {
-  console.log(query)
-  console.log(props.data.Title)
-  console.log(props.data.Paragraph)
-
+const Article = ({ props }) => {
   return (
     <div className={Styles.article}>
       <h1 className={Styles.articleTitle}>{props.data.Title}</h1>
@@ -27,8 +23,7 @@ Article.getInitialProps = async (ctx) => {
   }
 
   return {
-    props: { data }, // will be passed to the page component as props
-    query,
+    props: { data },
   }
 }
 
