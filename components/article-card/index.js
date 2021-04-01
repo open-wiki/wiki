@@ -13,7 +13,7 @@ const ArticleCard = ({ article }) => {
         ></div>
       </a>
       <div className={Styles.Content}>
-        <a href="#">
+        <a href={'/articles/' + article.id}>
           <h1>{article.Title}</h1>
         </a>
         <p>{article.Paragraph}</p>
