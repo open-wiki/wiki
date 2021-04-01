@@ -17,7 +17,7 @@ const Article = ({ props, query }) => {
 //standaart next.js functie om data op te halen
 Article.getInitialProps = async (ctx) => {
   const query = ctx.query
-  const res = await fetch(`http://localhost:1337/Articles/${query.id}`)
+  const res = await fetch(`http://localhost:5000/Articles/${query.id}`)
   const data = await res.json()
 
   if (!data) {

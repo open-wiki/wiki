@@ -4,7 +4,7 @@ function Create_Article(title, content) {
     Paragraph: content,
   }
 
-  fetch('http://localhost:1337/Articles', {
+  return fetch('http://localhost:5000/Articles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/Json',
@@ -13,10 +13,10 @@ function Create_Article(title, content) {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log('Success:', data)
+      return data
     })
     .catch((error) => {
-      console.error('Error:', error)
+      return error
     })
 }
 
