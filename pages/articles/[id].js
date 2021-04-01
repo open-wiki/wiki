@@ -1,4 +1,5 @@
 import Styles from './[id].module.css'
+import Markdown from '../../components/markdown/Markdown'
 
 const Article = ({ props, query }) => {
   console.log(query)
@@ -7,9 +8,8 @@ const Article = ({ props, query }) => {
 
   return (
     <div className={Styles.article}>
-      <h1>{props.data.Title}</h1>
-      <h1>{query.id}</h1>
-      <p>{props.data.Paragraph}</p>
+      <h1 className={Styles.articleTitle}>{props.data.Title}</h1>
+      <Markdown content={props.data.Paragraph} />
     </div>
   )
 }
