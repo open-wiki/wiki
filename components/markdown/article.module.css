@@ -1,12 +1,30 @@
 /*Dit is de css voor de markdown language*/
-
-.markdown strong {
-  font-weight: inherit;
-  font-weight: bolder;
+.markdown {
+  color: #3b3b3b;
+}
+.markdown :is(h1, h2) {
+  border-bottom: 1px solid #eee;
+  padding: 10px 0;
 }
 
+.markdown h2{
+  font-size: 1.5em;
+}
+
+.markdown p {
+  margin: 1em 0;
+}
+.markdown strong {
+  font-weight: inherit;
+  font-weight: bold;
+}
 .markdown em {
   font-style: italic;
+}
+
+.markdown a {
+  color: #4078c0;
+  text-decoration: none;
 }
 
 .markdown code,
@@ -35,12 +53,19 @@
 
 .markdown ul {
   list-style-type: circle;
+  margin: 1em 0;
 }
 
 .markdown ol {
   list-style-type: decimal;
+  margin: 1em 1.2em;
 }
-
+.markdown li {
+  margin: 0.5em 0;
+}
+.markdown li:last-child {
+  margin-bottom: 1em
+}
 .markdown blockquote {
   color: #666666;
   margin: 0;
