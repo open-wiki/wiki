@@ -23,7 +23,7 @@ export async function getStaticProps() {
   const res = await fetch(
     'http://localhost:5000/articles?' +
       new URLSearchParams({
-        _limit: '5',
+        _limit: '3',
       })
   )
   const articles = await res.json()

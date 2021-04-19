@@ -1,11 +1,19 @@
 import Styles from './[id].module.css'
 import Markdown from '../../components/markdown/Markdown'
+import IconButton from '../../components/icon-button'
 
 const Article = ({ props }) => {
   return (
-    <div className={Styles.article}>
-      <h1 className={Styles.articleTitle}>{props.data.Title}</h1>
-      <Markdown content={props.data.Paragraph} />
+    <div>
+      <div className={Styles.article}>
+        <h1 className={Styles.articleTitle}>{props.data.Title}</h1>
+        <Markdown content={props.data.Paragraph} />
+      </div>
+      <IconButton
+        icon={'add_circle'}
+        content={'Artikel aanpassen'}
+        href={'/articles/update'}
+      />
     </div>
   )
 }
