@@ -1,12 +1,25 @@
-import Overview from '../../components/article-overview/index'
+import ArticleCard from '../../components/article-card/index'
 
-export default function Home() {
+export default function Home({ articles }) {
   return (
     <div>
-      <Overview></Overview>
-      <Overview></Overview>
-      <Overview></Overview>
-      <Overview></Overview>
+      {articles.map((article) => (
+        <ArticleCard key={article.id} article={article} />
+      ))}
     </div>
   )
+}
+
+export async function getStaticProps() {
+  const res = await fetch('http://localhost:5000/articles')
+  const articles = await res.json()
+
+  if (!articles) {
+    return {
+      notFound: true,
+    }
+  }
+  return {
+    props: { articles },
+  }
 }

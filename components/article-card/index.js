@@ -1,6 +1,6 @@
 import Styles from './ArticleCard.module.css'
 
-const IconButton = () => {
+const ArticleCard = ({ article }) => {
   return (
     <div className={Styles.ArticleCard}>
       <a href="#">
@@ -13,17 +13,10 @@ const IconButton = () => {
         ></div>
       </a>
       <div className={Styles.Content}>
-        <a href="#">
-          <h1>User Story Mapping (USM)</h1>
+        <a href={'/articles/' + article.id}>
+          <h1>{article.Title}</h1>
         </a>
-        <p>
-          artikel n my opinion this is the best solution, but not everyone can use
-          JS. Basically, the jQuery will check any .text element, and if there are
-          more chars than the preset max var, it will cut the rest off and add an
-          ellipsis. There are no caveats to this approach, however this code example
-          is meant only to demonstrate the basic idea - I wouldn&apos;t use this in
-          production without improving on it for a two reasons:
-        </p>
+        <p>{article.Paragraph}</p>
         <div className={Styles.Meta}>
           <span className={Styles.Date}>1 maand geleden</span>
           <div className={Styles.Score}>
@@ -35,4 +28,4 @@ const IconButton = () => {
   )
 }
 
-export default IconButton
+export default ArticleCard

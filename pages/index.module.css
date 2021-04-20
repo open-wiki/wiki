@@ -9,3 +9,16 @@
   align-self: center;
   text-align: center;
 }
+
+.search h1 {
+  margin-bottom: 30px;
+}
+
+.recentArticles{
+  grid-row: 2;
+}
+
+.recentArticles h2 {
+  margin-bottom: 10px;
+  color: #3b3b3b;
+}

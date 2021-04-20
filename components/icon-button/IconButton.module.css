@@ -1,14 +1,39 @@
 .Button {
   color: #ffffff;
-  background: #f66060;
+  background-color: #f66060;
   border-radius: 10px;
   border: none;
   display: flex;
   align-items: center;
   padding: 2px 11px;
   box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
+  position: relative;
 }
+
+.Button:after{
+  content: '';
+  position: absolute;
+  top:0;
+  left: -150%;
+  width:150%;
+  height: 100%;
+  background-color: #fff;
+  opacity: .2;
+  transform: rotate(45deg);
+  transition: none ;
+}
+
+.Button:hover:after {
+  left:100%;
+  transition: all ease 1s;
+}
+
+.Button:hover{
+  background-color: #DB4747;
+}
+
 .Content {
   padding-left: 15px;
-  font-size: 22px;
+  font-size: 18px;
 }
