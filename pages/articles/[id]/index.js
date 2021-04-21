@@ -1,6 +1,6 @@
-import Styles from './[id].module.css'
-import Markdown from '../../components/markdown/Markdown'
-import IconButton from '../../components/icon-button'
+import Styles from './index.module.css'
+import Markdown from '../../../components/markdown/Markdown'
+import IconButton from '../../../components/icon-button'
 
 const Article = ({ props }) => {
   return (
@@ -12,7 +12,7 @@ const Article = ({ props }) => {
       <IconButton
         icon={'add_circle'}
         content={'Artikel aanpassen'}
-        href={'/articles/update'}
+        href={`/articles/${props.data.id}/edit`}
       />
     </div>
   )
