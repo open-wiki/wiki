@@ -21,7 +21,7 @@ export default function Home({ articles }) {
 
 export async function getStaticProps() {
   const res = await fetch(
-    'http://localhost:5000/articles?' +
+    'http://localhost:1337/articles?' +
       new URLSearchParams({
         _limit: '3',
       })

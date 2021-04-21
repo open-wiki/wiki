@@ -11,7 +11,7 @@ export default function Home({ articles }) {
 }
 
 export async function getStaticProps() {
-  const res = await fetch('http://localhost:5000/articles')
+  const res = await fetch('http://localhost:1337/articles')
   const articles = await res.json()
 
   if (!articles) {

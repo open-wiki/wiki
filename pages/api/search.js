@@ -1,6 +1,6 @@
 const Find_Article = (event) => {
   event.preventDefault()
-  var input = event.target.s.value
+  var input = event.target.input.value
 
   fetch(`http://localhost:1337/Articles/?Title_contains=${input}`, {
     method: 'GET',
@@ -18,7 +18,7 @@ const Find_Article = (event) => {
 
   console.log('Success:')
   //console.log(event)
-  console.log(event.target.s.value)
+  console.log(event.target.input.value)
 }
 
 export default Find_Article

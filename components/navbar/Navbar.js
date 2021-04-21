@@ -30,9 +30,6 @@ export default function Navbar() {
           <ActiveLink activeClassName={Styles.active} href="/articles/create">
             <a>Create</a>
           </ActiveLink>
-          <ActiveLink activeClassName={Styles.active} href="/searchresults">
-            <a>Search Result</a>
-          </ActiveLink>
         </div>
       </nav>
     </>
