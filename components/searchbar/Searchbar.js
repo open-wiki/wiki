@@ -3,10 +3,17 @@ import Styles from './Searchbar.module.css'
 const Searchbar = () => {
   return (
     <div className={Styles.searchbar}>
-      <input className={Styles.input} type="text" placeholder="Zoeken" name="s" />
-      <button className={Styles.searchButton}>
-        <span className={`material-icons md-24 ${Styles.searchIcon}`}>search</span>
-      </button>
+      <form action="/searchresults" method="get">
+        <input
+          className={Styles.input}
+          type="text"
+          placeholder="Zoeken"
+          name="input"
+        />
+        <input className={Styles.searchButton} type="submit" value="zoek">
+          <span className={`material-icons md-24 ${Styles.searchIcon}`}>search</span>
+        </input
+      </form>
     </div>
   )
 }

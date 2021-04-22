@@ -1,6 +1,6 @@
-import Styles from './[id].module.css'
-import Markdown from '../../components/markdown/Markdown'
-import IconButton from '../../components/icon-button'
+import Styles from './index.module.css'
+import Markdown from '../../../components/markdown/Markdown'
+import IconButton from '../../../components/icon-button'
 
 const Article = ({ props }) => {
   return (
@@ -12,7 +12,7 @@ const Article = ({ props }) => {
       <IconButton
         icon={'add_circle'}
         content={'Artikel aanpassen'}
-        href={'/articles/update'}
+        href={`/articles/${props.data.id}/edit`}
       />
     </div>
   )
@@ -21,7 +21,7 @@ const Article = ({ props }) => {
 //standaart next.js functie om data op te halen
 Article.getInitialProps = async (ctx) => {
   const query = ctx.query
-  const res = await fetch(`http://localhost:5000/Articles/${query.id}`)
+  const res = await fetch(`http://localhost:1337/Articles/${query.id}`)
   const data = await res.json()
 
   if (!data) {

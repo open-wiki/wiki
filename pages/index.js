@@ -28,15 +28,14 @@ export default function Home({ articles }) {
   )
 }
 
-export async function getServerSideProps() {
-  try {
-    const res = await fetch(
-      'http://localhost:5000/articles?' +
-        new URLSearchParams({
-          _limit: '3',
-        })
-    )
-    const articles = await res.json()
+export async function getStaticProps() {
+  const res = await fetch(
+    'http://localhost:1337/articles?' +
+      new URLSearchParams({
+        _limit: '3',
+      })
+  )
+  const articles = await res.json()
 
     if (!articles) {
       return {

@@ -4,7 +4,7 @@ function Create_Article(title, content) {
     Paragraph: content,
   }
 
-  return fetch('http://localhost:5000/Articles', {
+  return fetch('http://localhost:1337/Articles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/Json',
