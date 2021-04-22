@@ -10,8 +10,9 @@ const Searchbar = () => {
           placeholder="Zoeken"
           name="input"
         />
-        <input type="submit" value="zoek"></input>
-        <span className="material-icons md-24">search</span>
+        <input className={Styles.searchButton} type="submit" value="zoek">
+          <span className={`material-icons md-24 ${Styles.searchIcon}`}>search</span>
+        </input
       </form>
     </div>
   )
