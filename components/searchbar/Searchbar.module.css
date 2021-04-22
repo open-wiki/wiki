@@ -28,6 +28,10 @@
   display: flex;
   align-items: center;
 }
+.searchForm {
+    display: flex;
+    width: 100%;
+}
 .searchIcon {
     opacity: .8;
     font-weight: 800;

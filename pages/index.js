@@ -36,7 +36,7 @@ export async function getStaticProps() {
       })
   )
   const articles = await res.json()
-
+  try {
     if (!articles) {
       return {
         notFound: true,
