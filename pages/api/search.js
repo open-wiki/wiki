@@ -2,7 +2,7 @@ const Find_Article = (event) => {
   event.preventDefault()
   var input = event.target.input.value
 
-  fetch(`http://localhost:1337/Articles/?Title_contains=${input}`, {
+  fetch(`http://localhost:5000/Articles/?Title_contains=${input}`, {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

@@ -5,3 +5,16 @@
   margin: 0 auto;
   align-items: center;
 }
+.bodyOverlay {
+  width: 100vw;
+  height: 100vh;
+  display: none;
+  position: fixed;
+  z-index: 3;
+  top: 0;
+  overflow: hidden;
+  background: rgba(0,0,0,0.5);
+}
+.bodyOverlayVisible {
+  display: block;
+}

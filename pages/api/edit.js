@@ -5,7 +5,7 @@ export default function Edit_Article(title, content, id) {
     id: id,
   }
 
-  return fetch(`http://localhost:1337/Articles/${data.id}`, {
+  return fetch(`http://localhost:5000/Articles/${data.id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/Json',
@@ -19,21 +19,4 @@ export default function Edit_Article(title, content, id) {
     .catch((error) => {
       return error
     })
-}
-
-Edit_Article.getInitialProps = async (ctx) => {
-  const query = ctx.query
-  const res = await fetch(`http://localhost:1337/Articles/${query.id}`)
-  const data = await res.json()
-  console.log(res)
-
-  if (!data) {
-    return {
-      notFound: true,
-    }
-  }
-
-  return {
-    props: { data },
-  }
 }
