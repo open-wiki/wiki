@@ -16,7 +16,7 @@ export default function Home({ articles }) {
         />
       </div>
       <div className={Styles.search}>
-        <Searchbar />
+        <Searchbar height={'48px'} />
       </div>
       <div className={Styles.recentArticles}>
         <h2>Recente artikelen</h2>

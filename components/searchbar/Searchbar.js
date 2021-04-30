@@ -1,9 +1,14 @@
 import Styles from './Searchbar.module.css'
 
-const Searchbar = () => {
+const Searchbar = ({ height }) => {
   return (
     <div className={Styles.searchbar}>
-      <form action="/searchresults" method="get" className={Styles.searchForm}>
+      <form
+        action="/searchresults"
+        method="get"
+        className={Styles.searchForm}
+        style={{ height: height }}
+      >
         <input
           className={Styles.input}
           type="text"

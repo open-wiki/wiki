@@ -1,12 +1,14 @@
 import Styles from './Topbar.module.css'
 import IconButton from '../icon-button'
 import Navbar from '../navbar/Navbar'
+import Searchbar from '../searchbar/Searchbar'
 
 const Topbar = () => {
   return (
     <div className={Styles.topbar}>
       <Navbar />
-      <div className={Styles.buttons}>
+      <Searchbar />
+      <div className={Styles.topbarRight}>
         <IconButton
           icon={'add_circle'}
           content={'Nieuw artikel'}
