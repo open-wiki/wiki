@@ -14,7 +14,7 @@ export default function Navbar() {
       <div className={Styles.hamburgerOpen} onClick={toggle}>
         <i className="material-icons">menu</i>
       </div>
-      <nav className={open ? Styles.navbar : Styles.closednavbar}>
+      <nav className={`${Styles.navbar} ${open ? '' : Styles.closednavbar}`}>
         <div className={Styles.logo}>
           <Image
             src={'/logo-w.png'}

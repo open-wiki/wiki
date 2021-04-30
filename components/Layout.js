@@ -1,8 +1,11 @@
 import styles from './Layout.module.css'
 import Topbar from './topbar/Topbar'
 import Head from 'next/head'
+import HomeTopbar from './homeTopbar/HomeTopbar'
+import { useRouter } from 'next/router'
 
 const Layout = ({ children }) => {
+  const router = useRouter()
   return (
     <>
       <Head>
@@ -12,7 +15,7 @@ const Layout = ({ children }) => {
         />
       </Head>
       <div className="content">
-        <Topbar />
+        {router.pathname === '/' ? <HomeTopbar /> : <Topbar />}
         <div className={styles.container}>{children}</div>
       </div>
     </>

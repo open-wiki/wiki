@@ -22,7 +22,7 @@
   background-color: #fff;
   opacity: .2;
   transform: rotate(45deg);
-  transition: none ;
+  transition: none;
 }
 
 .Button:hover:after {
@@ -37,4 +37,5 @@
 .Content {
   padding-left: 15px;
   font-size: 18px;
+  white-space: nowrap;
 }
