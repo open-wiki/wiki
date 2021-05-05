@@ -16,37 +16,35 @@ export default function Home({ articles }) {
         />
       </div>
       <div className={Styles.search}>
-        <Searchbar />
+        <Searchbar height={'48px'} />
       </div>
       <div className={Styles.recentArticles}>
         <h2>Recente artikelen</h2>
-        {articles.map((article) => (
-          <ArticleCard key={article.id} article={article} />
-        ))}
+        {articles
+          ? articles.map((article) => (
+              <ArticleCard key={article.id} article={article} />
+            ))
+          : 'Geen artikelen gevonden'}
       </div>
     </div>
   )
 }
 
-export async function getStaticProps() {
-  const res = await fetch(
-    'http://localhost:1337/articles?' +
-      new URLSearchParams({
-        _limit: '3',
-      })
-  )
-  const articles = await res.json()
+export async function getServerSideProps() {
   try {
-    if (!articles) {
-      return {
-        notFound: true,
-      }
-    }
+    const res = await fetch(
+      'http://localhost:5000/articles?' +
+        new URLSearchParams({
+          _limit: '3',
+        })
+    )
+    const articles = await res.json()
     return {
       props: { articles },
     }
-  } catch (error) {
-    console.log(error)
-    return {}
+  } catch {
+    return {
+      props: {},
+    }
   }
 }

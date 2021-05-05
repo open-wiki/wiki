@@ -8,7 +8,6 @@ export default function Index() {
   const [title, setTitle] = React.useState('title')
   const [newArticle, setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
-    // the callback. Use a better name
     console.log(index)
     setValue(index)
   }

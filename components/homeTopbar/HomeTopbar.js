@@ -1,13 +1,11 @@
-import Styles from './Topbar.module.css'
+import Styles from './HomeTopbar.module.css'
 import IconButton from '../icon-button'
 import Navbar from '../navbar/Navbar'
-import Searchbar from '../searchbar/Searchbar'
 
-const Topbar = () => {
+const HomeTopbar = () => {
   return (
     <div className={Styles.topbar}>
       <Navbar />
-      <Searchbar />
       <div className={Styles.topbarRight}>
         <IconButton
           icon={'add_circle'}
@@ -19,4 +17,4 @@ const Topbar = () => {
   )
 }
 
-export default Topbar
+export default HomeTopbar

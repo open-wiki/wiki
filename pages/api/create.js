@@ -3,21 +3,47 @@ function Create_Article(title, content) {
     Title: title,
     Paragraph: content,
   }
+  // function handleErrors(response) {
+  //   if (!response.ok) {
+  //     throw Error(response.statusText);
+  //   }
+  //   return response;
+  // }
 
-  return fetch('http://localhost:1337/Articles', {
+  return fetch('http://localhost:5000/Articles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/Json',
     },
     body: JSON.stringify(data),
   })
-    .then((response) => response.json())
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok')
+      }
+      return response.json()
+    })
     .then((data) => {
       return data
     })
     .catch((error) => {
-      return error
+      console.error('There was a problem with fetching:', error)
     })
+
+  // .then(response => response.json)
+  // .then(data => console.log('succes:', data))
+  // .catch((error) => {
+  //   console.error('Erdror:', error)
+  // })
+
+  // .then((response) => response.json())
+  // .then((data) => {
+  //   console.log(data)
+  //   return data
+  // })
+  // .catch((error) => {
+  //   console.log(error)
+  // })
 }
 
 export default Create_Article
