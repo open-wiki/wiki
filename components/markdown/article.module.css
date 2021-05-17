@@ -31,24 +31,13 @@
 .markdown kbd,
 .markdown pre {
   font-family: 'courier new', monospace;
-  background-color: #f0f0f0;
 }
 
 .markdown code {
-  padding: 0.2em 0.4em;
-  margin: 0;
+  padding: 1rem;
+  margin: 10px 0;
   font-size: 85%;
-}
-
-.markdown pre code {
-  display: inline;
-  padding: 0;
-  margin: 0;
-  overflow: visible;
-  line-height: inherit;
-  word-wrap: normal;
-  background-color: initial;
-  border: 0;
+  border-radius: 10px;
 }
 
 .markdown ul {
