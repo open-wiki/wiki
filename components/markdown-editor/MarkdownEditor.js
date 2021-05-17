@@ -5,12 +5,15 @@ import 'react-mde/lib/styles/css/react-mde-editor.css'
 import 'react-mde/lib/styles/css/react-mde-toolbar.css'
 import 'react-mde/lib/styles/css/react-mde-preview.css'
 import 'react-mde/lib/styles/css/react-mde.css'
+import showdownHighlight from 'showdown-highlight'
+import 'highlight.js/styles/atom-one-dark.css'
 
-const converter = new Showdown.Converter({
+let converter = new Showdown.Converter({
   tables: true,
   simplifiedAutoLink: true,
   strikethrough: true,
   tasklists: true,
+  extensions: [showdownHighlight({ pre: true })],
 })
 
 function NormEdit({ sendDataToParent, value }) {
