@@ -45,6 +45,25 @@ export default function Edit({ props }) {
           'Edit your article above'
         )}
       </div>
+      <div
+        style={{
+          height: '30px',
+        }}
+      >
+        {' '}
+      </div>
+      <div>
+        <form>
+          <input
+            type="text"
+            name="title"
+            style={{
+              width: '450px',
+            }}
+          />
+        </form>
+        <button className={Styles.tag}>hallo</button>
+      </div>
     </div>
   )
 }

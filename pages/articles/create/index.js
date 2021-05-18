@@ -1,11 +1,20 @@
+/*
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import Create_Article from '../../api/create'
+import checkTags from '../../api/tags'
+//import sendTags from '../../api/tags'
+//import getTagID from '../../api/tags'
 import * as React from 'react'
 import Styles from './create.module.css'
+import ReactTagInput from "@pathofdev/react-tag-input";
+import "@pathofdev/react-tag-input/build/index.css";
 
-export default function Index() {
+
+
+export default function Index({props}) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
+  const [tags, setTags] = React.useState(["example tag"])
   const [newArticle, setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
     console.log(index)
@@ -13,9 +22,14 @@ export default function Index() {
   }
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const newArticleData = await Create_Article(title, value)
+    console.log(tags)
+    const filteredTags = await checkTags(tags, props.allTags)
+    //fun2
+    //fun3
+    const newArticleData = await Create_Article(title, value, tags)
     setNewArticle(newArticleData)
   }
+
   return (
     <div className={Styles.createArticle}>
       <h2>Titel:</h2>
@@ -43,6 +57,31 @@ export default function Index() {
           'create an article above'
         )}
       </div>
+      <div style={{
+        height: '30px'
+      }}> </div>
+
+      <ReactTagInput
+        tags={tags}
+        onChange={(newTags) => setTags(newTags)}
+      />
+
     </div>
   )
 }
+
+Index.getInitialProps = async() => {
+  const res = await fetch(`http://localhost:5000/Tags`)
+  const allTags = await res.json()
+  console.log(res)
+
+  if (!allTags) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { allTags },
+  }
+} */

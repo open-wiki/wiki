@@ -1,7 +1,8 @@
-function Create_Article(title, content) {
+function Create_Article(title, content, tags) {
   const data = {
     Title: title,
     Paragraph: content,
+    Tags: tags,
   }
   // function handleErrors(response) {
   //   if (!response.ok) {
@@ -24,6 +25,7 @@ function Create_Article(title, content) {
       return response.json()
     })
     .then((data) => {
+      console.log(data)
       return data
     })
     .catch((error) => {
