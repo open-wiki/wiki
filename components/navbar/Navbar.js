@@ -11,9 +11,12 @@ export default function Navbar() {
 
   return (
     <>
-      <div className={Styles.hamburgerOpen} onClick={toggle}>
+      <button
+        className={`${Styles.hamburger} ${Styles.hamburgerOpen}`}
+        onClick={toggle}
+      >
         <i className="material-icons">menu</i>
-      </div>
+      </button>
       <nav className={`${Styles.navbar} ${open ? '' : Styles.closednavbar}`}>
         <div className={Styles.logo}>
           <Image
@@ -24,9 +27,12 @@ export default function Navbar() {
             priority
           />
         </div>
-        <div className={Styles.hamburgerClosed} onClick={toggle}>
+        <button
+          className={`${Styles.hamburger} ${Styles.hamburgerClosed}`}
+          onClick={toggle}
+        >
           <i className="material-icons">close</i>
-        </div>
+        </button>
         <div className={Styles.menu}>
           <ActiveLink activeClassName={Styles.active} href="/">
             <a>Home</a>
