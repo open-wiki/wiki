@@ -1,4 +1,5 @@
 function Create_Article(title, content, tags) {
+  console.log('create tags: ' + tags)
   const data = {
     Title: title,
     Paragraph: content,

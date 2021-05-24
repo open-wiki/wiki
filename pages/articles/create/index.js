@@ -1,20 +1,17 @@
-/*
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import Create_Article from '../../api/create'
 import checkTags from '../../api/tags'
-//import sendTags from '../../api/tags'
+import sendTags from '../../api/tags'
 //import getTagID from '../../api/tags'
 import * as React from 'react'
 import Styles from './create.module.css'
-import ReactTagInput from "@pathofdev/react-tag-input";
-import "@pathofdev/react-tag-input/build/index.css";
+import ReactTagInput from '@pathofdev/react-tag-input'
+import '@pathofdev/react-tag-input/build/index.css'
 
-
-
-export default function Index({props}) {
+export default function Index({ props }) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
-  const [tags, setTags] = React.useState(["example tag"])
+  const [tags, setTags] = React.useState(['example tag'])
   const [newArticle, setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
     console.log(index)
@@ -22,10 +19,10 @@ export default function Index({props}) {
   }
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(tags)
-    const filteredTags = await checkTags(tags, props.allTags)
-    //fun2
-    //fun3
+    console.log(props.allTags.length)
+    const allTags = props.allTags
+    sendTags(tags, allTags, checkTags)
+    console.log('sendTags: ' + sendTags(tags, allTags, checkTags))
     const newArticleData = await Create_Article(title, value, tags)
     setNewArticle(newArticleData)
   }
@@ -57,23 +54,23 @@ export default function Index({props}) {
           'create an article above'
         )}
       </div>
-      <div style={{
-        height: '30px'
-      }}> </div>
+      <div
+        style={{
+          height: '30px',
+        }}
+      >
+        {' '}
+      </div>
 
-      <ReactTagInput
-        tags={tags}
-        onChange={(newTags) => setTags(newTags)}
-      />
-
+      <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
     </div>
   )
 }
 
-Index.getInitialProps = async() => {
+Index.getInitialProps = async () => {
   const res = await fetch(`http://localhost:5000/Tags`)
   const allTags = await res.json()
-  console.log(res)
+  console.log('initialprops: ' + res)
 
   if (!allTags) {
     return {
@@ -84,4 +81,4 @@ Index.getInitialProps = async() => {
   return {
     props: { allTags },
   }
-} */
+}
