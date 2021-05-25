@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import LoginFormToggle from '../../components/login-form-toggle'
 import Styles from './login.module.css'
+import Login_User from '../api/login_user'
 
 const Login = () => {
   const [showRegister, setShowRegister] = useState(false)
-
   return (
     <>
       <h2>Login/Register</h2>
@@ -25,21 +25,28 @@ const Login = () => {
   )
 }
 const LoginForm = () => {
-  const [loginEmail, setLoginEmail] = useState()
-  const handleSubmit = (event) => {
+  const [loginIdentifier, setLoginIdentifier] = useState('')
+  const [loginPassword, setLoginPassword] = useState('')
+  const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(loginEmail)
+    const authenticatedUser = await Login_User(loginIdentifier, loginPassword)
+    console.log(authenticatedUser)
   }
   return (
     <form className={Styles.loginForm} onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="voornaam.achternaam@student.hu.nl"
-        value={loginEmail}
-        onChange={(e) => setLoginEmail(e.target.value)}
+        value={loginIdentifier}
+        onChange={(e) => setLoginIdentifier(e.target.value)}
       />
-      <input type="password" placeholder="wachtwoord" />
-      <input type="submit" />
+      <input
+        type="password"
+        placeholder="wachtwoord"
+        value={loginPassword}
+        onChange={(e) => setLoginPassword(e.target.value)}
+      />
+      <button type="submit">Login</button>
     </form>
   )
 }
