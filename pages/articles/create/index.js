@@ -10,7 +10,6 @@ export default function Index() {
   const [title, setTitle] = React.useState('title')
   const [setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
-    console.log(index)
     setValue(index)
   }
   const handleSubmit = async (event) => {

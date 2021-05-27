@@ -3,9 +3,10 @@ import Edit_Article from '../../../api/edit'
 import * as React from 'react'
 import Styles from './edit.module.css'
 import Router from 'next/router'
+import Cookies from 'cookies'
 
-export default function Edit({ props }) {
-  const [value, setValue] = React.useState(props?.data?.Paragraph)
+export default function Edit({ data }) {
+  const [value, setValue] = React.useState(data?.Paragraph)
   const [title, setTitle] = React.useState('title')
   const [setEditArticle] = React.useState()
   const sendDataToParent = (index) => {
@@ -13,7 +14,7 @@ export default function Edit({ props }) {
   }
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const editArticleData = await Edit_Article(title, value, props?.data?.id)
+    const editArticleData = await Edit_Article(title, value, data?.id)
     Router.push(`/articles/${editArticleData.id}`)
     setEditArticle(editArticleData)
   }
@@ -24,7 +25,7 @@ export default function Edit({ props }) {
         <input
           type="text"
           name="title"
-          defaultValue={props?.data?.Title}
+          defaultValue={data?.Title}
           onChange={(event) => setTitle(event.target.value)}
         />
         <h2>Content: </h2>
@@ -47,14 +48,18 @@ function redirectUser(ctx, location) {
 //https://www.mikealche.com/software-development/how-to-implement-authentication-in-next-js-without-third-party-libraries
 //https://nextjs.org/docs/authentication
 //https://www.youtube.com/watch?v=U2rRxzjruKg&t=25s
-Edit.getInitialProps = async (ctx) => {
+export const getServerSideProps = async (ctx) => {
   const query = ctx.query
-  const res = await fetch(`http://localhost:5000/Articles/${query.id}`)
-  const data = await res.json()
+  const response = await fetch(`http://localhost:5000/Articles/${query.id}`)
+  const data = await response.json()
 
-  const jwt = false
-  if (!jwt) {
-    redirectUser(ctx, '/login')
+  if (ctx.req) {
+    const cookies = new Cookies(ctx.req, ctx.res)
+
+    const jwt = cookies.get('jwt')
+    if (!jwt) {
+      redirectUser(ctx, '/login')
+    }
   }
 
   if (!data) {

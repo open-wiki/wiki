@@ -13,10 +13,6 @@ export default function SearchResults({ articles }) {
 }
 
 export async function getServerSideProps({ query }) {
-  //const router = useRouter()
-  //const { input } = router.query
-  //console.log(input)
-
   const { input } = query
   const inputs = input.split(' ')
 

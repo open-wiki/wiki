@@ -17,7 +17,6 @@ const Find_Article = (event) => {
     })
 
   console.log('Success:')
-  //console.log(event)
   console.log(event.target.input.value)
 }
 

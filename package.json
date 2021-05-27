@@ -18,6 +18,8 @@
     "*.+(js|jsx|json|css,md)": "prettier --write"
   },
   "dependencies": {
+    "cookie-cutter": "^0.2.0",
+    "cookies": "^0.8.0",
     "highlight.js": "^10.7.2",
     "material-design-icons": "^3.0.1",
     "next": "10.0.8",

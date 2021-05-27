@@ -6,7 +6,6 @@ import 'highlight.js/styles/atom-one-dark.css'
 
 export default function Markdown({ content }) {
   const markdown = content
-  console.log(content)
   return (
     <div className={Styles.markdown}>
       <MarkdownView

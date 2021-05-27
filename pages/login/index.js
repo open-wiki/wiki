@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LoginFormToggle from '../../components/login-form-toggle'
 import Styles from './login.module.css'
 import Login_User from '../api/login_user'
+import cookieCutter from 'cookie-cutter'
 
 const Login = () => {
   const [showRegister, setShowRegister] = useState(false)
@@ -30,7 +31,11 @@ const LoginForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const authenticatedUser = await Login_User(loginIdentifier, loginPassword)
-    console.log(authenticatedUser)
+    if (authenticatedUser?.jwt) {
+      document.cookie = `jwt=${authenticatedUser.jwt}`
+    }
+    const jwt = cookieCutter.get('jwt')
+    console.log(jwt)
   }
   return (
     <form className={Styles.loginForm} onSubmit={handleSubmit}>
