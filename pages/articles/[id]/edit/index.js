@@ -5,19 +5,22 @@ import Styles from './edit.module.css'
 import Router from 'next/router'
 import Cookies from 'cookies'
 
-export default function Edit({ data }) {
+export default function Edit({ data, statusCode }) {
   const [value, setValue] = React.useState(data?.Paragraph)
   const [title, setTitle] = React.useState('title')
   const [setEditArticle] = React.useState()
   const sendDataToParent = (index) => {
     setValue(index)
   }
+
   const handleSubmit = async (event) => {
     event.preventDefault()
     const editArticleData = await Edit_Article(title, value, data?.id)
     Router.push(`/articles/${editArticleData.id}`)
     setEditArticle(editArticleData)
   }
+
+  console.log('statusCode: ', +statusCode)
   return (
     <div className={Styles.editArticle}>
       <h2>Titel:</h2>
@@ -49,22 +52,32 @@ function redirectUser(ctx, location) {
 //https://nextjs.org/docs/authentication
 //https://www.youtube.com/watch?v=U2rRxzjruKg&t=25s
 export const getServerSideProps = async (ctx) => {
-  const query = ctx.query
-  const response = await fetch(`http://localhost:5000/Articles/${query.id}`)
-  const data = await response.json()
-
+  let jwt = false
   if (ctx.req) {
     const cookies = new Cookies(ctx.req, ctx.res)
-
-    const jwt = cookies.get('jwt')
+    jwt = cookies.get('jwt')
     if (!jwt) {
       redirectUser(ctx, '/login')
     }
   }
+  const response = await fetch(`http://localhost:5000/Articles/${ctx.query.id}`, {
+    headers: {
+      Authorization: 'Bearer ' + jwt,
+    },
+  })
+  const data = await response.json()
 
   if (!data) {
     return {
       notFound: true,
+    }
+  }
+
+  if (data.statusCode) {
+    return {
+      props: {
+        statusCode: data.statusCode,
+      },
     }
   }
 
