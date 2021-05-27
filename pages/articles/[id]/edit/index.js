@@ -48,9 +48,6 @@ function redirectUser(ctx, location) {
   }
 }
 
-//https://www.mikealche.com/software-development/how-to-implement-authentication-in-next-js-without-third-party-libraries
-//https://nextjs.org/docs/authentication
-//https://www.youtube.com/watch?v=U2rRxzjruKg&t=25s
 export const getServerSideProps = async (ctx) => {
   let jwt = false
   if (ctx.req) {
