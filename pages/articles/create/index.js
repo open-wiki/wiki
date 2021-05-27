@@ -1,14 +1,15 @@
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import Create_Article from '../../api/create'
-import checkTags from '../../api/tags'
-import sendTags from '../../api/tags'
+//import checkTags from '../../api/tags'
+//import sendTags from '../../api/tags'
 //import getTagID from '../../api/tags'
 import * as React from 'react'
 import Styles from './create.module.css'
 import ReactTagInput from '@pathofdev/react-tag-input'
 import '@pathofdev/react-tag-input/build/index.css'
+import send from '../../api/tags_2'
 
-export default function Index({ props }) {
+export default function Index(/* { props }*/) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
   const [tags, setTags] = React.useState(['example tag'])
@@ -19,10 +20,15 @@ export default function Index({ props }) {
   }
   const handleSubmit = async (event) => {
     event.preventDefault()
+    /*
     console.log(props.allTags.length)
     const allTags = props.allTags
-    sendTags(tags, allTags, checkTags)
-    console.log('sendTags: ' + sendTags(tags, allTags, checkTags))
+    const o = sendTags(tags, allTags, checkTags)
+    console.log(o)
+    //console.log('sendTags: ' + sendTags(tags, allTags, checkTags))
+    */
+
+    send(tags)
     const newArticleData = await Create_Article(title, value, tags)
     setNewArticle(newArticleData)
   }
