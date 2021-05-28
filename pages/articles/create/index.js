@@ -2,6 +2,7 @@ import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 /*import Create_Article from '../../api/create'*/
 import * as React from 'react'
 import Styles from './create.module.css'
+/*import { useRouter} from 'next/router'*/
 
 export default function Index() {
   /*const router = useRouter()*/
