@@ -1,19 +1,19 @@
 import Link from 'next/link'
 import IconButton from '../icon-button'
-import nextCookies from 'next-cookies'
+import { isUserLoggedIn } from '../../pages/index'
 
 const UserMenu = (ctx) => {
-  let isLoggedIn = false
-  // const jwt = cookie.get('jwt')
-  const { jwt } = nextCookies(ctx)
-  // const jwt = false
-  if (jwt) {
-    isLoggedIn = true
-  }
+  //   let isLoggedIn = false
+  //   // const jwt = cookie.get('jwt')
+  //   const { jwt } = nextCookies(ctx)
+  //   // const jwt = false
+  //   if (jwt) {
+  //     isLoggedIn = true
+  //   }
   const handleSignOut = () => {
     document.cookie = `jwt=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`
-    console.log(jwt)
   }
+  const isLoggedIn = isUserLoggedIn(ctx)
   return (
     <>
       {isLoggedIn ? (
