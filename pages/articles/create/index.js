@@ -2,7 +2,6 @@ import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 /*import Create_Article from '../../api/create'*/
 import * as React from 'react'
 import Styles from './create.module.css'
-/*import { useRouter } from 'next/router'*/
 
 export default function Index() {
   /*const router = useRouter()*/
@@ -12,6 +11,7 @@ export default function Index() {
   const [isFilePicked, setIsFilePicked] = React.useState(false)
   const postData = {
     Title: title,
+    Paragraph: value,
   }
   const sendDataToParent = (index) => {
     setValue(index)
@@ -28,23 +28,21 @@ export default function Index() {
   const handleSubmission = (event) => {
     event.preventDefault()
     const formData = new FormData()
-    formData.append('Thumbnail', selectedFile)
+    formData.append('files.Thumbnail', selectedFile)
     formData.append('data', JSON.stringify(postData))
     console.log([...formData])
 
-    return fetch('http://localhost:5000/Articles', formData, {
+    return fetch('http://localhost:5000/Articles', {
       method: 'POST',
       body: formData,
     })
       .then((data) => {
         console.log('Succesfully uploaded: ', data)
-        return data
       })
       .catch((error) => {
         console.log('Error: ', error.message)
       })
   }
-
   /*  const handleSubmit = async (event) => {
     event.preventDefault()
     const newArticleData = await Create_Article(title, value)
@@ -54,7 +52,10 @@ export default function Index() {
 
   return (
     <div className={Styles.createArticle}>
-      <form onSubmit={(event) => handleSubmission(event)}>
+      <form
+        onSubmit={(event) => handleSubmission(event)}
+        encType="multipart/form-data"
+      >
         <div className={Styles.articleText}>
           <input
             type="text"
