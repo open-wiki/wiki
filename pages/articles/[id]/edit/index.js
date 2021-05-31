@@ -39,14 +39,14 @@ export default function Edit({ data, statusCode }) {
   )
 }
 
-function redirectUser(ctx, location) {
-  if (ctx.req) {
-    ctx.res.writeHead(302, { Location: location })
-    ctx.res.end()
-  } else {
-    Router.push(location)
-  }
-}
+// function redirectUser(ctx, location) {
+//   if (ctx.req) {
+//     ctx.res.writeHead(302, { Location: location })
+//     ctx.res.end()
+//   } else {
+//     Router.push(location)
+//   }
+// }
 
 export const getServerSideProps = async (ctx) => {
   let jwt = false
@@ -54,7 +54,13 @@ export const getServerSideProps = async (ctx) => {
     const cookies = new Cookies(ctx.req, ctx.res)
     jwt = cookies.get('jwt')
     if (!jwt) {
-      redirectUser(ctx, '/login')
+      // redirectUser(ctx, '/login')
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
     }
   }
   const response = await fetch(`http://localhost:5000/Articles/${ctx.query.id}`, {

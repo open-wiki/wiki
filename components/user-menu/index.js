@@ -23,7 +23,9 @@ const UserMenu = (ctx) => {
             content={'Nieuw artikel'}
             href={'/articles/create'}
           />
-          <a onClick={handleSignOut}>log uit</a>
+          <a href="#" onClick={handleSignOut}>
+            log uit
+          </a>
         </div>
       ) : (
         <div>

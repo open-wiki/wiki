@@ -32,7 +32,7 @@ const LoginForm = () => {
     event.preventDefault()
     const authenticatedUser = await Login_User(loginIdentifier, loginPassword)
     if (authenticatedUser?.jwt) {
-      document.cookie = `jwt=${authenticatedUser.jwt}`
+      document.cookie = `jwt=${authenticatedUser.jwt}; path=/`
     }
     const jwt = cookieCutter.get('jwt')
     console.log(jwt)
