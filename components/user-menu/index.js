@@ -1,17 +1,12 @@
 import Link from 'next/link'
 import IconButton from '../icon-button'
 import { isUserLoggedIn } from '../../pages/index'
+import Router from 'next/router'
 
 const UserMenu = (ctx) => {
-  //   let isLoggedIn = false
-  //   // const jwt = cookie.get('jwt')
-  //   const { jwt } = nextCookies(ctx)
-  //   // const jwt = false
-  //   if (jwt) {
-  //     isLoggedIn = true
-  //   }
   const handleSignOut = () => {
     document.cookie = `jwt=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT`
+    Router.reload()
   }
   const isLoggedIn = isUserLoggedIn(ctx)
   return (
@@ -23,9 +18,7 @@ const UserMenu = (ctx) => {
             content={'Nieuw artikel'}
             href={'/articles/create'}
           />
-          <a href="#" onClick={handleSignOut}>
-            log uit
-          </a>
+          <button onClick={handleSignOut}>log uit</button>
         </div>
       ) : (
         <div>

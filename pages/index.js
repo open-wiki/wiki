@@ -52,7 +52,6 @@ export async function getServerSideProps() {
 
 export const isUserLoggedIn = (ctx) => {
   const { jwt } = nextCookies(ctx)
-  console.log(jwt)
   if (jwt) {
     return true
   }

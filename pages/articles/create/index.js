@@ -3,6 +3,7 @@ import Create_Article from '../../api/create'
 import * as React from 'react'
 import Styles from './create.module.css'
 import { useRouter } from 'next/router'
+import Cookies from 'cookies'
 
 export default function Index() {
   const router = useRouter()
@@ -33,4 +34,24 @@ export default function Index() {
       </form>
     </div>
   )
+}
+
+export const getServerSideProps = async (ctx) => {
+  let jwt = false
+  if (ctx.req) {
+    const cookies = new Cookies(ctx.req, ctx.res)
+    jwt = cookies.get('jwt')
+    if (!jwt) {
+      // redirectUser(ctx, '/login')
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
+    }
+  }
+  return {
+    props: {},
+  }
 }

@@ -1,26 +1,30 @@
 import NormEdit from '../../../../components/markdown-editor/MarkdownEditor'
-import Edit_Article from '../../../api/edit'
 import * as React from 'react'
 import Styles from './edit.module.css'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import Cookies from 'cookies'
 
-export default function Edit({ data, statusCode }) {
+export default function Edit({ data }) {
   const [value, setValue] = React.useState(data?.Paragraph)
   const [title, setTitle] = React.useState('title')
-  const [setEditArticle] = React.useState()
-  const sendDataToParent = (index) => {
-    setValue(index)
-  }
+  const router = useRouter()
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault()
-    const editArticleData = await Edit_Article(title, value, data?.id)
-    Router.push(`/articles/${editArticleData.id}`)
-    setEditArticle(editArticleData)
+    fetch(`/api/edit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        Title: title,
+        Paragraph: value,
+        id: data?.id,
+      }),
+    }).then(() => router.push(`/articles/${data.id}`))
   }
 
-  console.log('statusCode: ', +statusCode)
   return (
     <div className={Styles.editArticle}>
       <h2>Titel:</h2>
@@ -32,29 +36,19 @@ export default function Edit({ data, statusCode }) {
           onChange={(event) => setTitle(event.target.value)}
         />
         <h2>Content: </h2>
-        <NormEdit sendDataToParent={sendDataToParent} value={value} />
+        <NormEdit sendDataToParent={(index) => setValue(index)} value={value} />
         <input type="submit" value="Submit" className={Styles.button} />
       </form>
     </div>
   )
 }
 
-// function redirectUser(ctx, location) {
-//   if (ctx.req) {
-//     ctx.res.writeHead(302, { Location: location })
-//     ctx.res.end()
-//   } else {
-//     Router.push(location)
-//   }
-// }
-
-export const getServerSideProps = async (ctx) => {
+export const getServerSideProps = async ({ req, res, query }) => {
   let jwt = false
-  if (ctx.req) {
-    const cookies = new Cookies(ctx.req, ctx.res)
+  if (req) {
+    const cookies = new Cookies(req, res)
     jwt = cookies.get('jwt')
     if (!jwt) {
-      // redirectUser(ctx, '/login')
       return {
         redirect: {
           destination: '/login',
@@ -63,9 +57,9 @@ export const getServerSideProps = async (ctx) => {
       }
     }
   }
-  const response = await fetch(`http://localhost:5000/Articles/${ctx.query.id}`, {
+  const response = await fetch(`http://localhost:5000/Articles/${query.id}`, {
     headers: {
-      Authorization: 'Bearer ' + jwt,
+      Authorization: `Bearer ${jwt}`,
     },
   })
   const data = await response.json()
