@@ -44,13 +44,6 @@ export default function Index() {
         console.log('Error: ', error.message)
       })
   }
-  /*  const handleSubmit = async (event) => {
-    event.preventDefault()
-    const newArticleData = await Create_Article(title, value)
-    console.log(newArticleData)
-    router.push(`/articles/${newArticleData.id}`)
-  }*/
-
   return (
     <div className={Styles.createArticle}>
       <form
