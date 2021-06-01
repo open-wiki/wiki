@@ -2,11 +2,12 @@ import NormEdit from '../../../../components/markdown-editor/MarkdownEditor'
 import Edit_Article from '../../../api/edit'
 import * as React from 'react'
 import Styles from './edit.module.css'
+import { useRouter } from 'next/router'
 
 export default function Edit({ props }) {
+  const router = useRouter()
   const [value, setValue] = React.useState(props.data.Paragraph)
   const [title, setTitle] = React.useState('title')
-  const [editArticle, setEditArticle] = React.useState()
   const sendDataToParent = (index) => {
     // the callback. Use a better name
     console.log(index)
@@ -15,7 +16,7 @@ export default function Edit({ props }) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const editArticleData = await Edit_Article(title, value, props.data.id)
-    setEditArticle(editArticleData)
+    router.push(`/articles/${editArticleData.id}`)
   }
   return (
     <div className={Styles.editArticle}>
@@ -24,7 +25,7 @@ export default function Edit({ props }) {
         <input
           type="text"
           name="title"
-          placeholder={props.data.Title}
+          defaultValue={props.data.Title}
           onChange={(event) => setTitle(event.target.value)}
         />
         <h2>Content: </h2>
