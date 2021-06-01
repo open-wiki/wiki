@@ -1,13 +1,17 @@
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
-/*import Create_Article from '../../api/create'*/
+import Create_Article from '../../api/create'
+import getTagID from '../../api/tags_2'
 import * as React from 'react'
 import Styles from './create.module.css'
-/*import { useRouter} from 'next/router'*/
+import ReactTagInput from '@pathofdev/react-tag-input'
+import '@pathofdev/react-tag-input/build/index.css'
+import send from '../../api/tags'
 
-export default function Index() {
-  /*const router = useRouter()*/
+export default function Index({ props }) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
+  const [tags, setTags] = React.useState(['example tag'])
+  const [newArticle, setNewArticle] = React.useState()
   const [selectedFile, setSelectedFile] = React.useState()
   const [isFilePicked, setIsFilePicked] = React.useState(false)
   const postData = {
@@ -28,9 +32,28 @@ export default function Index() {
 
   const handleSubmission = (event) => {
     event.preventDefault()
+
+    var i
+    var x
+    var y
+
+    for (i = 0; i < tags.length; i++) {
+      y = 1
+      for (x = 0; x < props.allTags.length; x++) {
+        if (tags[i] == props.allTags[x].TagName) {
+          y = 0
+        }
+      }
+      if (y == 1) {
+        send(tags[i])
+      }
+    }
+
+    const IDList = await getTagID(tags)
     const formData = new FormData()
     formData.append('files.Thumbnail', selectedFile)
     formData.append('data', JSON.stringify(postData))
+    formData.append('tags[]', IDList)
     console.log([...formData])
 
     return fetch('http://localhost:5000/Articles', {
@@ -44,12 +67,14 @@ export default function Index() {
         console.log('Error: ', error.message)
       })
   }
+
   return (
     <div className={Styles.createArticle}>
       <form
         onSubmit={(event) => handleSubmission(event)}
         encType="multipart/form-data"
       >
+      <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
         <div className={Styles.articleText}>
           <input
             type="text"
@@ -81,4 +106,19 @@ export default function Index() {
       </form>
     </div>
   )
+}
+
+Index.getInitialProps = async () => {
+  const res = await fetch(`http://localhost:5000/Tags`)
+  const allTags = await res.json()
+
+  if (!allTags) {
+    return {
+      notFound: true,
+    }
+  }
+
+  return {
+    props: { allTags },
+  }
 }
