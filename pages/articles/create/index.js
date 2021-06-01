@@ -1,6 +1,6 @@
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import Create_Article from '../../api/create'
-//import getTagID from '../../api/tags'
+import getTagID from '../../api/tags_2'
 import * as React from 'react'
 import Styles from './create.module.css'
 import ReactTagInput from '@pathofdev/react-tag-input'
@@ -36,7 +36,8 @@ export default function Index({ props }) {
       }
     }
 
-    const newArticleData = await Create_Article(title, value, tags)
+    const IDList = await getTagID(tags)
+    const newArticleData = await Create_Article(title, value, IDList)
     setNewArticle(newArticleData)
   }
 

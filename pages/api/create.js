@@ -1,5 +1,5 @@
 function Create_Article(title, content, tags) {
-  console.log('working input: ' + title + ' and ' + content)
+  console.log('working input: ' + title + ' and ' + content + 'en ids:' + tags)
   const data = {
     Title: title,
     Paragraph: content,
