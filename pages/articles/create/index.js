@@ -1,5 +1,4 @@
 import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
-import Create_Article from '../../api/create'
 import getTagID from '../../api/tags_2'
 import * as React from 'react'
 import Styles from './create.module.css'
@@ -11,13 +10,9 @@ export default function Index({ props }) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
   const [tags, setTags] = React.useState(['example tag'])
-  const [newArticle, setNewArticle] = React.useState()
   const [selectedFile, setSelectedFile] = React.useState()
   const [isFilePicked, setIsFilePicked] = React.useState(false)
-  const postData = {
-    Title: title,
-    Paragraph: value,
-  }
+
   const sendDataToParent = (index) => {
     setValue(index)
   }
@@ -30,7 +25,7 @@ export default function Index({ props }) {
     console.log(selectedFile)
   }
 
-  const handleSubmission = (event) => {
+  const handleSubmission = async (event) => {
     event.preventDefault()
 
     var i
@@ -50,10 +45,14 @@ export default function Index({ props }) {
     }
 
     const IDList = await getTagID(tags)
+    const postData = {
+      Title: title,
+      Paragraph: value,
+      Tags: IDList,
+    }
     const formData = new FormData()
     formData.append('files.Thumbnail', selectedFile)
     formData.append('data', JSON.stringify(postData))
-    formData.append('tags[]', IDList)
     console.log([...formData])
 
     return fetch('http://localhost:5000/Articles', {
@@ -74,7 +73,7 @@ export default function Index({ props }) {
         onSubmit={(event) => handleSubmission(event)}
         encType="multipart/form-data"
       >
-      <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
+        <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
         <div className={Styles.articleText}>
           <input
             type="text"
