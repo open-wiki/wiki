@@ -1,6 +1,4 @@
 export default function send(tag) {
-  console.log('tags: ' + tag)
-  console.log('AAAAAAAAAAAAAAAA')
   const data = {
     TagName: tag,
   }

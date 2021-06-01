@@ -13,7 +13,6 @@ export default function Index({ props }) {
   const [tags, setTags] = React.useState(['example tag'])
   const [newArticle, setNewArticle] = React.useState()
   const sendDataToParent = (index) => {
-    console.log(index)
     setValue(index)
   }
   const handleSubmit = async (event) => {
@@ -26,7 +25,6 @@ export default function Index({ props }) {
     for (i = 0; i < tags.length; i++) {
       y = 1
       for (x = 0; x < props.allTags.length; x++) {
-        console.log('compairison: ' + tags[i] + '--' + props.allTags[x].TagName)
         if (tags[i] == props.allTags[x].TagName) {
           y = 0
         }
@@ -84,7 +82,6 @@ export default function Index({ props }) {
 Index.getInitialProps = async () => {
   const res = await fetch(`http://localhost:5000/Tags`)
   const allTags = await res.json()
-  console.log('initialprops: ' + res)
 
   if (!allTags) {
     return {
