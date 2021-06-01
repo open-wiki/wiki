@@ -1,7 +1,7 @@
 import Styles from './Topbar.module.css'
-import IconButton from '../icon-button'
 import Navbar from '../navbar/Navbar'
 import Searchbar from '../searchbar/Searchbar'
+import UserMenu from '../user-menu'
 
 const Topbar = () => {
   return (
@@ -9,11 +9,7 @@ const Topbar = () => {
       <Navbar />
       <Searchbar />
       <div className={Styles.topbarRight}>
-        <IconButton
-          icon={'add_circle'}
-          content={'Nieuw artikel'}
-          href={'/articles/create'}
-        />
+        <UserMenu />
       </div>
     </div>
   )

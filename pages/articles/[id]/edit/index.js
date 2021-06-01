@@ -1,23 +1,30 @@
 import NormEdit from '../../../../components/markdown-editor/MarkdownEditor'
-import Edit_Article from '../../../api/edit'
 import * as React from 'react'
 import Styles from './edit.module.css'
 import { useRouter } from 'next/router'
+import Cookies from 'cookies'
 
-export default function Edit({ props }) {
-  const router = useRouter()
-  const [value, setValue] = React.useState(props.data.Paragraph)
+export default function Edit({ data }) {
+  const [value, setValue] = React.useState(data?.Paragraph)
   const [title, setTitle] = React.useState('title')
-  const sendDataToParent = (index) => {
-    // the callback. Use a better name
-    console.log(index)
-    setValue(index)
-  }
-  const handleSubmit = async (event) => {
+  const router = useRouter()
+
+  const handleSubmit = (event) => {
     event.preventDefault()
-    const editArticleData = await Edit_Article(title, value, props.data.id)
-    router.push(`/articles/${editArticleData.id}`)
+    fetch(`/api/edit`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        Title: title,
+        Paragraph: value,
+        id: data?.id,
+      }),
+    }).then(() => router.push(`/articles/${data.id}`))
   }
+
   return (
     <div className={Styles.editArticle}>
       <h2>Titel:</h2>
@@ -25,11 +32,11 @@ export default function Edit({ props }) {
         <input
           type="text"
           name="title"
-          defaultValue={props.data.Title}
+          defaultValue={data?.Title}
           onChange={(event) => setTitle(event.target.value)}
         />
         <h2>Content: </h2>
-        <NormEdit sendDataToParent={sendDataToParent} value={value} />
+        <NormEdit sendDataToParent={(index) => setValue(index)} value={value} />
         <input type="submit" value="Submit" className={Styles.button} />
       </form>
       <div>
@@ -48,16 +55,38 @@ export default function Edit({ props }) {
   )
 }
 
-//standaart next.js functie om data op te halen
-Edit.getInitialProps = async (ctx) => {
-  const query = ctx.query
-  const res = await fetch(`http://localhost:5000/Articles/${query.id}`)
-  const data = await res.json()
-  console.log(res)
+export const getServerSideProps = async ({ req, res, query }) => {
+  let jwt = false
+  if (req) {
+    const cookies = new Cookies(req, res)
+    jwt = cookies.get('jwt')
+    if (!jwt) {
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
+    }
+  }
+  const response = await fetch(`http://localhost:5000/Articles/${query.id}`, {
+    headers: {
+      Authorization: `Bearer ${jwt}`,
+    },
+  })
+  const data = await response.json()
 
   if (!data) {
     return {
       notFound: true,
+    }
+  }
+
+  if (data.statusCode) {
+    return {
+      props: {
+        statusCode: data.statusCode,
+      },
     }
   }
 

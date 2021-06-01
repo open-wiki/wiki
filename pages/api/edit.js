@@ -1,22 +1,17 @@
-export default function Edit_Article(title, content, id) {
-  const data = {
-    Title: title,
-    Paragraph: content,
-    id: id,
-  }
+import Cookies from 'cookies'
 
-  return fetch(`http://localhost:5000/Articles/${data.id}`, {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/Json',
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      return data
+export default async function editArticle(req, res) {
+  if (req.method === 'POST') {
+    const cookies = new Cookies(req, res)
+    const jwt = cookies.get('jwt')
+    const response = await fetch(`http://localhost:5000/Articles/${req.body.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${jwt}`,
+      },
+      body: JSON.stringify(req.body),
     })
-    .catch((error) => {
-      return error
-    })
+    res.status(response.status).send()
+  }
 }

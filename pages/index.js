@@ -2,6 +2,7 @@ import Searchbar from '../components/searchbar/Searchbar'
 import Styles from './index.module.css'
 import ArticleCard from '../components/article-card'
 import Image from 'next/image'
+import nextCookies from 'next-cookies'
 
 export default function Home({ articles }) {
   return (
@@ -47,4 +48,12 @@ export async function getServerSideProps() {
       props: {},
     }
   }
+}
+
+export const isUserLoggedIn = (ctx) => {
+  const { jwt } = nextCookies(ctx)
+  if (jwt) {
+    return true
+  }
+  return false
 }

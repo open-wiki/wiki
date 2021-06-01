@@ -2,6 +2,8 @@ import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import getTagID from '../../api/tags_2'
 import * as React from 'react'
 import Styles from './create.module.css'
+import { useRouter } from 'next/router'
+import Cookies from 'cookies'
 import ReactTagInput from '@pathofdev/react-tag-input'
 import '@pathofdev/react-tag-input/build/index.css'
 import send from '../../api/tags'
@@ -107,7 +109,21 @@ export default function Index({ props }) {
   )
 }
 
-Index.getInitialProps = async () => {
+export const getServerSideProps = async (ctx) => {
+  let jwt = false
+  if (ctx.req) {
+    const cookies = new Cookies(ctx.req, ctx.res)
+    jwt = cookies.get('jwt')
+    if (!jwt) {
+      // redirectUser(ctx, '/login')
+      return {
+        redirect: {
+          destination: '/login',
+          permanent: false,
+        },
+      }
+    }
+  }
   const res = await fetch(`http://localhost:5000/Tags`)
   const allTags = await res.json()
 
