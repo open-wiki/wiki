@@ -60,22 +60,22 @@ export default function Index() {
           <NormEdit sendDataToParent={sendDataToParent} value={value} />
         </div>
         <div className={Styles.articleCard}>
-          <div>
-            <div className={Styles.thumbnailPreview}></div>
-            <div className={Styles.thumbnailBtnWrapper}>
-              <button className={Styles.thumbnailButton}>
-                Afbeelding toevoegen
-              </button>
-              <input type="file" name="Thumbnail" onChange={onImageChange} />
-              {isFilePicked ? (
-                <div>
-                  <p>Filename: {selectedFile.name}</p>
-                </div>
-              ) : (
-                <p>Select a file to show details</p>
-              )}
-            </div>
+          <div className={Styles.thumbnailPreview}></div>
+          <div className={Styles.thumbnailBtnWrapper}>
+            <button className={Styles.thumbnailButton}>
+              <i className="material-icons md-24">add_circle</i>
+              <span>Afbeelding toevoegen</span>
+            </button>
+            <input type="file" name="Thumbnail" onChange={onImageChange} />
+            {isFilePicked ? (
+              <div>
+                <p>Filename: {selectedFile.name}</p>
+              </div>
+            ) : (
+              <p>Select a file to show details</p>
+            )}
           </div>
+
           <input type="submit" value="Submit" className={Styles.button} />
         </div>
       </form>
