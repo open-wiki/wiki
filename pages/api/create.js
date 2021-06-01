@@ -33,7 +33,7 @@ function Create_Article(title, content) {
   // .then(response => response.json)
   // .then(data => console.log('succes:', data))
   // .catch((error) => {
-  //   console.error('Erdror:', error)
+  //   console.error('Error:', error)
   // })
 
   // .then((response) => response.json())

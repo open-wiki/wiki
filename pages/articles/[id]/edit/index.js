@@ -8,7 +8,6 @@ export default function Edit({ props }) {
   const router = useRouter()
   const [value, setValue] = React.useState(props.data.Paragraph)
   const [title, setTitle] = React.useState('title')
-  const [setEditArticle] = React.useState()
   const sendDataToParent = (index) => {
     // the callback. Use a better name
     console.log(index)
@@ -18,7 +17,6 @@ export default function Edit({ props }) {
     event.preventDefault()
     const editArticleData = await Edit_Article(title, value, props.data.id)
     router.push(`/articles/${editArticleData.id}`)
-    setEditArticle(editArticleData)
   }
   return (
     <div className={Styles.editArticle}>
