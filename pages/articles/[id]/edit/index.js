@@ -39,6 +39,18 @@ export default function Edit({ data }) {
         <NormEdit sendDataToParent={(index) => setValue(index)} value={value} />
         <input type="submit" value="Submit" className={Styles.button} />
       </form>
+      <div>
+        <form>
+          <input
+            type="text"
+            name="title"
+            style={{
+              width: '450px',
+            }}
+          />
+        </form>
+        <button className={Styles.tag}>hallo</button>
+      </div>
     </div>
   )
 }

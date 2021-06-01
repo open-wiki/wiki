@@ -1,5 +1,7 @@
 import Styles from './ArticleCard.module.css'
 
+const ApiUrl = `http://localhost:5000`
+
 const ArticleCard = ({ article }) => {
   return (
     <div className={Styles.ArticleCard}>
@@ -7,8 +9,9 @@ const ArticleCard = ({ article }) => {
         <div
           className={Styles.Thumbnail}
           style={{
-            background:
-              'url(https://miro.medium.com/max/1400/1*7Hch-sFvFGjO0SE4lp1luw.png)',
+            background: `url(${
+              ApiUrl + article?.Thumbnail?.formats?.thumbnail?.url
+            })`,
           }}
         ></div>
       </a>

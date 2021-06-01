@@ -1,11 +1,9 @@
-function Create_Article(title, content, tags) {
+export default function send(tag) {
   const data = {
-    Title: title,
-    Paragraph: content,
-    Tags: tags,
+    TagName: tag,
   }
 
-  return fetch('http://localhost:5000/Articles', {
+  return fetch('http://localhost:5000/Tags', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/Json',
@@ -26,5 +24,3 @@ function Create_Article(title, content, tags) {
       console.error('There was a problem with fetching:', error)
     })
 }
-
-export default Create_Article

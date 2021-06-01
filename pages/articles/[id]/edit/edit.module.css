@@ -30,6 +30,23 @@
   background: #263045;
 }
 
+.tag {
+  color: #ffffff;
+  background: #263045;
+  border-radius: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+  padding: 4px 13px;
+  margin: 10px 0;
+  box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
+  font-size: 1rem;
+}
+
+.tag:hover {
+  background: #f66060;
+}
+
 .editArticle input:nth-child(1) {
   width: 30vw;
   height: 25px;
