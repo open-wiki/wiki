@@ -2,13 +2,12 @@ import NormEdit from '../../../components/markdown-editor/MarkdownEditor'
 import getTagID from '../../api/tags_2'
 import * as React from 'react'
 import Styles from './create.module.css'
-import { useRouter } from 'next/router'
 import Cookies from 'cookies'
 import ReactTagInput from '@pathofdev/react-tag-input'
 import '@pathofdev/react-tag-input/build/index.css'
 import send from '../../api/tags'
 
-export default function Index({ props }) {
+export default function Index({ allTags }) {
   const [value, setValue] = React.useState('**Hello world!!!**')
   const [title, setTitle] = React.useState('title')
   const [tags, setTags] = React.useState(['example tag'])
@@ -19,6 +18,7 @@ export default function Index({ props }) {
     setValue(index)
   }
 
+  console.log(allTags)
   const onImageChange = (event) => {
     console.log(event.target.files)
     setIsFilePicked(true)
@@ -36,8 +36,8 @@ export default function Index({ props }) {
 
     for (i = 0; i < tags.length; i++) {
       y = 1
-      for (x = 0; x < props.allTags.length; x++) {
-        if (tags[i] == props.allTags[x].TagName) {
+      for (x = 0; x < allTags.length; x++) {
+        if (tags[i] == allTags[x].TagName) {
           y = 0
         }
       }
@@ -115,7 +115,6 @@ export const getServerSideProps = async (ctx) => {
     const cookies = new Cookies(ctx.req, ctx.res)
     jwt = cookies.get('jwt')
     if (!jwt) {
-      // redirectUser(ctx, '/login')
       return {
         redirect: {
           destination: '/login',
