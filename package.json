@@ -18,9 +18,9 @@
     "*.+(js|jsx|json|css,md)": "prettier --write"
   },
   "dependencies": {
+    "@pathofdev/react-tag-input": "^1.0.7",
     "cookie-cutter": "^0.2.0",
     "cookies": "^0.8.0",
-    "@pathofdev/react-tag-input": "^1.0.7",
     "highlight.js": "^10.7.2",
     "material-design-icons": "^3.0.1",
     "next": "10.0.8",
@@ -31,6 +31,7 @@
     "react-mde": "^11.0.6",
     "react-showdown": "^2.1.0",
     "react-tag-input": "^6.5.2",
+    "react-toastify": "^7.0.4",
     "showdown": "^1.9.1",
     "showdown-highlight": "^2.1.7"
   },

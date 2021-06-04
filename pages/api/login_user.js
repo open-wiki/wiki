@@ -1,29 +1,26 @@
-function Login_User(identifier, password) {
-  const data = {
-    identifier: identifier,
-    password: password,
-  }
-
-  return fetch('http://localhost:5000/auth/local', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/Json',
-    },
-    body: JSON.stringify(data),
+export default async function Login_User(req, res) {
+  return new Promise((resolve) => {
+    fetch('http://localhost:5000/auth/local', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/Json',
+      },
+      body: JSON.stringify(req.body),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data)
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json')
+        res.setHeader('Cache-Control', 'max-age=180000')
+        res.json(data)
+        res.end(JSON.stringify(data))
+      })
+      .catch((error) => {
+        res.json(error)
+        res.status(405).end()
+        return resolve()
+      })
   })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error('Network response was not ok')
-      }
-      return response.json()
-    })
-    .then((data) => {
-      return data
-    })
-    .catch((error) => {
-      console.error('There was a problem with fetching:', error)
-    })
 }
-
-export default Login_User
