@@ -71,11 +71,19 @@ const Login = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [registrationError, setRegistrationError] = useState('')
+    const [emailError, setEmailError] = useState('')
     // const [repeatPassword, setRepeatPassword] = useState('')
     const router = useRouter()
 
     const handleSubmit = async (event) => {
       event.preventDefault()
+      if (!email.endsWith('hu.nl')) {
+        const message = 'Alleen email-adressen van de HU zijn toegestaan'
+        toast.error(`Error: ${message}`)
+        setEmailError(message)
+        return setRegistrationError(message)
+      }
       fetch(`/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -89,10 +97,27 @@ const Login = () => {
           FirstName: firstName,
           LastName: lastName,
         }),
-      }).then(() => router.push('/'))
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          if (data.jwt) {
+            document.cookie = `jwt=${data.jwt}; path=/;`
+            router.push('/')
+          }
+          if (data.statusCode) {
+            setRegistrationError(data.data[0].messages[0].message)
+            toast.error(
+              `Error ${data.statusCode}: ${data.data[0].messages[0].message}`
+            )
+          }
+        })
     }
     return (
       <form className={Styles.registerForm} onSubmit={handleSubmit}>
+        {registrationError && (
+          <span className={Styles.error}>{registrationError}</span>
+        )}
         <input
           type="text"
           placeholder="gebruikersnaam"
@@ -115,6 +140,7 @@ const Login = () => {
           type="email"
           placeholder="email"
           value={email}
+          className={emailError && Styles.inputError}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
