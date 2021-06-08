@@ -22,8 +22,7 @@ const UserMenu = (ctx) => {
         </div>
       ) : (
         <div>
-          <Link href="/login">Registreren</Link>
-          <Link href="/login">Login</Link>
+          <Link href="/login">Registreren / Login</Link>
         </div>
       )}
     </>
