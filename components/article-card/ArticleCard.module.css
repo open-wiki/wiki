@@ -46,3 +46,14 @@
     display: grid;
     grid-template-columns: 2rem 2rem;
 }
+.likeButton {
+    background-color: white;
+    border: 0px;
+}
+.likeButton:hover {
+    background-color: lightblue;
+    color: blue;
+}
+.likedButton {
+    color: blue;
+}
