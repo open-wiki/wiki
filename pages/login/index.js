@@ -72,16 +72,25 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [registrationError, setRegistrationError] = useState('')
-    const [emailError, setEmailError] = useState('')
-    // const [repeatPassword, setRepeatPassword] = useState('')
+    const [emailError, setEmailError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
+    const [repeatPassword, setRepeatPassword] = useState('')
     const router = useRouter()
 
     const handleSubmit = async (event) => {
       event.preventDefault()
+      setEmailError(false)
+      setPasswordError(false)
       if (!email.endsWith('hu.nl')) {
         const message = 'Alleen email-adressen van de HU zijn toegestaan'
         toast.error(`Error: ${message}`)
-        setEmailError(message)
+        setEmailError(true)
+        return setRegistrationError(message)
+      }
+      if (password !== repeatPassword) {
+        const message = 'Wachtwoorden komen niet overeen'
+        toast.error(`Error: ${message}`)
+        setPasswordError(true)
         return setRegistrationError(message)
       }
       fetch(`/api/auth/register`, {
@@ -147,9 +156,16 @@ const Login = () => {
           type="password"
           placeholder="wachtwoord"
           value={password}
+          className={passwordError && Styles.inputError}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="password" placeholder="herhaal wachtwoord" />
+        <input
+          type="password"
+          placeholder="herhaal wachtwoord"
+          value={repeatPassword}
+          className={passwordError && Styles.inputError}
+          onChange={(e) => setRepeatPassword(e.target.value)}
+        />
         <button type="submit">Registreren</button>
       </form>
     )
