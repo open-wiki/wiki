@@ -127,40 +127,52 @@ const Login = () => {
         {registrationError && (
           <span className={Styles.error}>{registrationError}</span>
         )}
+        <label htmlFor="username">Gebruikersnaam</label>
         <input
           type="text"
+          id="username"
           placeholder="gebruikersnaam"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label htmlFor="firstName">Voornaam</label>
         <input
           type="text"
+          id="firstName"
           placeholder="voornaam"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
+        <label htmlFor="lastName">Achternaam</label>
         <input
           type="text"
+          id="lastName"
           placeholder="achternaam"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
+        <label htmlFor="email">HU-email</label>
         <input
           type="email"
+          id="email"
           placeholder="email"
           value={email}
           className={emailError && Styles.inputError}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label htmlFor="password">Wachtwoord</label>
         <input
           type="password"
+          id="password"
           placeholder="wachtwoord"
           value={password}
           className={passwordError && Styles.inputError}
           onChange={(e) => setPassword(e.target.value)}
         />
+        <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
         <input
           type="password"
+          id="repeatPassword"
           placeholder="herhaal wachtwoord"
           value={repeatPassword}
           className={passwordError && Styles.inputError}
