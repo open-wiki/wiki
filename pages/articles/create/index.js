@@ -18,13 +18,10 @@ export default function Index({ allTags }) {
     setValue(index)
   }
 
-  console.log(allTags)
   const onImageChange = (event) => {
-    console.log(event.target.files)
     setIsFilePicked(true)
 
     setSelectedFile(event.target.files[0])
-    console.log(selectedFile)
   }
 
   const handleSubmission = async (event) => {
