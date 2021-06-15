@@ -71,11 +71,28 @@ const Login = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    // const [repeatPassword, setRepeatPassword] = useState('')
+    const [registrationError, setRegistrationError] = useState('')
+    const [emailError, setEmailError] = useState(false)
+    const [passwordError, setPasswordError] = useState(false)
+    const [repeatPassword, setRepeatPassword] = useState('')
     const router = useRouter()
 
     const handleSubmit = async (event) => {
       event.preventDefault()
+      setEmailError(false)
+      setPasswordError(false)
+      if (!email.endsWith('hu.nl')) {
+        const message = 'Alleen email-adressen van de HU zijn toegestaan'
+        toast.error(`Error: ${message}`)
+        setEmailError(true)
+        return setRegistrationError(message)
+      }
+      if (password !== repeatPassword) {
+        const message = 'Wachtwoorden komen niet overeen'
+        toast.error(`Error: ${message}`)
+        setPasswordError(true)
+        return setRegistrationError(message)
+      }
       fetch(`/api/auth/register`, {
         method: 'POST',
         headers: {
@@ -89,41 +106,78 @@ const Login = () => {
           FirstName: firstName,
           LastName: lastName,
         }),
-      }).then(() => router.push('/'))
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data)
+          if (data.jwt) {
+            document.cookie = `jwt=${data.jwt}; path=/;`
+            router.push('/')
+          }
+          if (data.statusCode) {
+            setRegistrationError(data.data[0].messages[0].message)
+            toast.error(
+              `Error ${data.statusCode}: ${data.data[0].messages[0].message}`
+            )
+          }
+        })
     }
     return (
       <form className={Styles.registerForm} onSubmit={handleSubmit}>
+        {registrationError && (
+          <span className={Styles.error}>{registrationError}</span>
+        )}
+        <label htmlFor="username">Gebruikersnaam</label>
         <input
           type="text"
+          id="username"
           placeholder="gebruikersnaam"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
+        <label htmlFor="firstName">Voornaam</label>
         <input
           type="text"
+          id="firstName"
           placeholder="voornaam"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
         />
+        <label htmlFor="lastName">Achternaam</label>
         <input
           type="text"
+          id="lastName"
           placeholder="achternaam"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
         />
+        <label htmlFor="email">HU-email</label>
         <input
           type="email"
+          id="email"
           placeholder="email"
           value={email}
+          className={emailError && Styles.inputError}
           onChange={(e) => setEmail(e.target.value)}
         />
+        <label htmlFor="password">Wachtwoord</label>
         <input
           type="password"
+          id="password"
           placeholder="wachtwoord"
           value={password}
+          className={passwordError && Styles.inputError}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <input type="password" placeholder="herhaal wachtwoord" />
+        <label htmlFor="repeatPassword">Herhaal wachtwoord</label>
+        <input
+          type="password"
+          id="repeatPassword"
+          placeholder="herhaal wachtwoord"
+          value={repeatPassword}
+          className={passwordError && Styles.inputError}
+          onChange={(e) => setRepeatPassword(e.target.value)}
+        />
         <button type="submit">Registreren</button>
       </form>
     )
