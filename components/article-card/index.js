@@ -26,7 +26,11 @@ const ArticleCard = ({ article }) => {
         </a>
         <p>{article.Paragraph}</p>
         <div className={Styles.Meta}>
-          <span className={Styles.Date}>{article.published_at.slice(0, 10)}</span>
+          <span className={Styles.Date}>
+            {article.published_at.slice(8, 10)}
+            {article.published_at.slice(4, 8)}
+            {article.published_at.slice(0, 4)}
+          </span>
           <div className={Styles.Score}>
             {article.Upvotes}{' '}
             <button
