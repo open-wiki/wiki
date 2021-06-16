@@ -14,12 +14,10 @@ export default async function Register_User(req, res) {
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json')
         res.setHeader('Cache-Control', 'max-age=180000')
-        res.json(data)
         res.end(JSON.stringify(data))
       })
       .catch((error) => {
-        res.json(error)
-        res.status(405).end()
+        res.status(405).end(error)
         return resolve()
       })
   })
