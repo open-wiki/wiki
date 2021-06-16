@@ -1,8 +1,13 @@
 import Styles from './ArticleCard.module.css'
+import { useState } from 'react'
 
 const ApiUrl = `http://localhost:5000`
 
 const ArticleCard = ({ article }) => {
+  const [like, setLike] = useState(false)
+  const onLike = () => {
+    setLike(!like)
+  }
   return (
     <div className={Styles.ArticleCard}>
       <a href="#">
@@ -21,9 +26,20 @@ const ArticleCard = ({ article }) => {
         </a>
         <p>{article.Paragraph}</p>
         <div className={Styles.Meta}>
-          <span className={Styles.Date}>1 maand geleden</span>
+          <span className={Styles.Date}>
+            {article.published_at.slice(8, 10)}
+            {article.published_at.slice(4, 8)}
+            {article.published_at.slice(0, 4)}
+          </span>
           <div className={Styles.Score}>
-            360 <span className={'material-icons'}>thumb_up_off_alt</span>
+            {article.Upvotes}{' '}
+            <button
+              className={`${Styles.likeButton} ${like && Styles.likedButton}`}
+              onClick={onLike}
+            >
+              {' '}
+              <span className={'material-icons'}>thumb_up_off_alt</span>{' '}
+            </button>
           </div>
         </div>
       </div>

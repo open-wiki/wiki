@@ -72,7 +72,6 @@ export default function Index({ allTags }) {
         onSubmit={(event) => handleSubmission(event)}
         encType="multipart/form-data"
       >
-        <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
         <div className={Styles.articleText}>
           <input
             type="text"
@@ -98,7 +97,7 @@ export default function Index({ allTags }) {
               <p>Select a file to show details</p>
             )}
           </div>
-
+          <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
           <input type="submit" value="Submit" className={Styles.button} />
         </div>
       </form>
