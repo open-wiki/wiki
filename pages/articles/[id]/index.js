@@ -2,11 +2,12 @@ import Styles from './index.module.css'
 import Markdown from '../../../components/markdown/Markdown'
 import ReactTagInput from '@pathofdev/react-tag-input'
 import '@pathofdev/react-tag-input/build/index.css'
+import Link from 'next/link'
 
 const ApiUrl = `http://localhost:5000`
 
 const Article = ({ data }) => {
-  const tags = data.Tags.map((d) => <p key={d.id}>{d.TagName}</p>)
+  const tags = data.Tags.map((tag) => <p key={tag.id}>{tag.TagName}</p>)
 
   return (
     <div className={Styles.articleOverview}>
@@ -29,10 +30,12 @@ const Article = ({ data }) => {
         <p className={Styles.tags}>
           <ReactTagInput tags={tags} readOnly={true} />
         </p>
-        <button className={Styles.editButton}>
-          Artikel aanpassen
-          <i className="material-icons md-24">add_circle</i>
-        </button>
+        <Link href={`/articles/${data.id}/edit`}>
+          <button className={Styles.editButton}>
+            Artikel aanpassen
+            <i className="material-icons md-24">edit</i>
+          </button>
+        </Link>
       </div>
     </div>
   )
