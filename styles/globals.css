@@ -135,7 +135,7 @@ body {
 }
 
 h1 {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
   font-weight: 700;
   font-family: 'Open Sans', sans-serif;
   color: #3b3b3b;
@@ -148,6 +148,9 @@ h2 {
 }
 
 .react-tag-input {
+  border: 0px !important;
+}
+=======
   background: white;
   color: #333;
   border: 1px solid #e1e1e1;

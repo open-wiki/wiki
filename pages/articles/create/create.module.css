@@ -84,6 +84,7 @@
   display: grid;
   grid-template-columns: 10px 2fr;
   align-content: center;
+
 }
 
 .thumbnailButton:hover {
