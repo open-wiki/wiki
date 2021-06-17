@@ -24,7 +24,7 @@
     height: 100%;
     box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.16);
     width: 100%;
-    height: 400px;
+    height: 100%;
     bottom: 0;
     display: grid;
     grid-template-rows: 200px repeat(3, 1fr);
@@ -61,6 +61,7 @@
 
 .editButton {
     width: 100%;
+    min-height:40px;
     color: #ffffff;
     background-color: #f66060;
     border-radius: 0px 0px 10px 10px;
@@ -68,10 +69,12 @@
     display: flex;
     align-items: center;
     text-align: center;
+    justify-content: center;
     padding: 7px 11px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
     overflow: hidden;
     cursor: pointer;
+    position: relative;
     grid-column: 1 / span 2;
 }
 
@@ -95,4 +98,9 @@
 
 .editButton:hover{
     background-color: #DB4747;
+}
+
+.editButton i {
+    margin-left: 10px;
+    font-size: 20px;
 }
