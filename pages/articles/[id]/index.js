@@ -19,21 +19,20 @@ const Article = ({ data }) => {
         <div
           className={Styles.Thumbnail}
           style={{
-            background: `url(${ApiUrl + data?.Thumbnail?.formats?.thumbnail?.url})`,
+            background: `url(${ApiUrl + data?.Thumbnail?.formats?.small?.url})`,
           }}
         ></div>
         <h1>{data.Title}</h1>
         <h3>Datum</h3>
         <p>{data.published_at.slice(0, 10)}</p>
         <h3>Tags</h3>
-        {/*{data.map(data => <div>{data.Tags[0].TagName}</div>)}*/}
         <p className={Styles.tags}>
           <ReactTagInput tags={tags} readOnly={true} />
         </p>
         <Link href={`/articles/${data.id}/edit`}>
           <button className={Styles.editButton}>
             Artikel aanpassen
-            <i className="material-icons md-24">edit</i>
+            <i className="material-icons md-12">edit</i>
           </button>
         </Link>
       </div>

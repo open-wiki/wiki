@@ -14,9 +14,7 @@ const ArticleCard = ({ article }) => {
         <div
           className={Styles.Thumbnail}
           style={{
-            background: `url(${
-              ApiUrl + article?.Thumbnail?.formats?.thumbnail?.url
-            })`,
+            background: `url(${ApiUrl + article?.Thumbnail?.formats?.small?.url})`,
           }}
         ></div>
       </a>

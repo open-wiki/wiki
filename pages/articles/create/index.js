@@ -82,7 +82,9 @@ export default function Index({ allTags }) {
           <NormEdit sendDataToParent={sendDataToParent} value={value} />
         </div>
         <div className={Styles.articleCard}>
-          <div className={Styles.thumbnailPreview}></div>
+          <div className={Styles.thumbnailPreview}>
+            <img src={selectedFile ? URL.createObjectURL(selectedFile) : null} />
+          </div>
           <div className={Styles.thumbnailBtnWrapper}>
             <button className={Styles.thumbnailButton}>
               <i className="material-icons md-24">add_circle</i>
@@ -98,7 +100,7 @@ export default function Index({ allTags }) {
             )}
           </div>
           <ReactTagInput tags={tags} onChange={(newTags) => setTags(newTags)} />
-          <input type="submit" value="Submit" className={Styles.button} />
+          <input type="submit" value="Artikel aanmaken" className={Styles.button} />
         </div>
       </form>
     </div>
