@@ -73,6 +73,7 @@
     overflow: hidden;
     cursor: pointer;
     grid-column: 1 / span 2;
+    position: relative;
 }
 
 .editButton:after{

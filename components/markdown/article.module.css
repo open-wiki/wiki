@@ -66,3 +66,7 @@
 .markdown sup {
   color: red;
 }
+
+.markdown img {
+  max-width:100%;
+}
