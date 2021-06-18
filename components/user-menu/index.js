@@ -11,17 +11,17 @@ const UserMenu = (ctx) => {
   }
   const isLoggedIn = isUserLoggedIn(ctx)
   return (
-    <>
+    <div
+      className={Styles.x}
+      style={{
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        width: '100%',
+      }}
+    >
       {isLoggedIn ? (
-        <div
-          className={Styles.userMenu}
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            justifyContent: 'flex-end',
-            width: '100%',
-          }}
-        >
+        <>
           <IconButton
             icon={'add_circle'}
             content={'Nieuw artikel'}
@@ -30,13 +30,13 @@ const UserMenu = (ctx) => {
           <button className={Styles.logoutBtn} onClick={handleSignOut}>
             log uit
           </button>
-        </div>
+        </>
       ) : (
-        <div>
+        <>
           <Link href="/login">Registreren / Login</Link>
-        </div>
+        </>
       )}
-    </>
+    </div>
   )
 }
 

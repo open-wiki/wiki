@@ -6,6 +6,7 @@ import ReactTagInput from '@pathofdev/react-tag-input'
 import send from '../../../api/tags'
 import getTagID from '../../../api/tags_2'
 import '@pathofdev/react-tag-input/build/index.css'
+import { useRouter } from 'next/router'
 
 export default function Edit({ data, allTags }) {
   const [value, setValue] = React.useState(data?.Paragraph)
@@ -18,7 +19,7 @@ export default function Edit({ data, allTags }) {
   const sendDataToParent = (index) => {
     setValue(index)
   }
-  console.log(data)
+  const router = useRouter()
 
   const onImageChange = (event) => {
     console.log(event.target.files)
@@ -62,8 +63,10 @@ export default function Edit({ data, allTags }) {
       method: 'PUT',
       body: formData,
     })
+      .then((response) => response.json())
       .then((data) => {
         console.log('Succesfully uploaded: ', data)
+        router.push(`/articles/${data.id}`)
       })
       .catch((error) => {
         console.log('Error: ', error.message)

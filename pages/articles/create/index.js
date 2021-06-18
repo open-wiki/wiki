@@ -6,6 +6,7 @@ import Cookies from 'cookies'
 import ReactTagInput from '@pathofdev/react-tag-input'
 import '@pathofdev/react-tag-input/build/index.css'
 import send from '../../api/tags'
+import { useRouter } from 'next/router'
 
 export default function Index({ allTags }) {
   const [value, setValue] = React.useState('**Hello world!!!**')
@@ -14,6 +15,7 @@ export default function Index({ allTags }) {
   const [selectedFile, setSelectedFile] = React.useState()
   const [isFilePicked, setIsFilePicked] = React.useState(false)
 
+  const router = useRouter()
   const sendDataToParent = (index) => {
     setValue(index)
   }
@@ -52,14 +54,15 @@ export default function Index({ allTags }) {
     const formData = new FormData()
     formData.append('files.Thumbnail', selectedFile)
     formData.append('data', JSON.stringify(postData))
-    console.log([...formData])
 
     return fetch('http://localhost:5000/Articles', {
       method: 'POST',
       body: formData,
     })
+      .then((response) => response.json())
       .then((data) => {
-        console.log('Succesfully uploaded: ', data)
+        console.log(data)
+        router.push(`/articles/${data.id}`)
       })
       .catch((error) => {
         console.log('Error: ', error.message)
