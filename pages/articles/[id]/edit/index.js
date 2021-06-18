@@ -8,15 +8,17 @@ import getTagID from '../../../api/tags_2'
 import '@pathofdev/react-tag-input/build/index.css'
 
 export default function Edit({ data, allTags }) {
-  const [value, setValue] = React.useState(data?.data.Paragraph)
-  const [title, setTitle] = React.useState('title')
-  const [tags, setTags] = React.useState(['example tag'])
+  const [value, setValue] = React.useState(data?.Paragraph)
+  const [title, setTitle] = React.useState(data?.Title)
+  const tagTitles = data.Tags.map((tag) => tag.TagName)
+  const [tags, setTags] = React.useState(tagTitles)
   const [selectedFile, setSelectedFile] = React.useState()
   const [isFilePicked, setIsFilePicked] = React.useState(false)
 
   const sendDataToParent = (index) => {
     setValue(index)
   }
+  console.log(data)
 
   const onImageChange = (event) => {
     console.log(event.target.files)
@@ -78,6 +80,7 @@ export default function Edit({ data, allTags }) {
           <input
             type="text"
             name="Title"
+            value={title}
             placeholder="Titel"
             onChange={(event) => setTitle(event.target.value)}
           />
@@ -85,7 +88,13 @@ export default function Edit({ data, allTags }) {
         </div>
         <div className={Styles.articleCard}>
           <div className={Styles.thumbnailPreview}>
-            <img src={selectedFile ? URL.createObjectURL(selectedFile) : null} />
+            <img
+              src={
+                selectedFile
+                  ? URL.createObjectURL(selectedFile)
+                  : 'http://localhost:5000' + data?.Thumbnail?.formats?.small?.url
+              }
+            />
           </div>
           <div className={Styles.thumbnailBtnWrapper}>
             <button className={Styles.thumbnailButton}>

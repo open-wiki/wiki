@@ -12,6 +12,7 @@
 .topbarRight {
     justify-self: end;
     grid-column-start: 3;
+    width: 100%;
 }
 .homeTopBar {
     background: none;
