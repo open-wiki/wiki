@@ -76,6 +76,7 @@
     cursor: pointer;
     position: relative;
     grid-column: 1 / span 2;
+    position: relative;
 }
 
 .editButton:after{
